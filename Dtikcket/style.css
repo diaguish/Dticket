@@ -1,4 +1,6 @@
-/* Reset simple + police */
+/* =========================
+   RESET + BASE
+   ========================= */
 *{
   margin: 0;
   padding: 0;
@@ -6,7 +8,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
+/* =========================
+   AUTH (login + inscription)
+   ========================= */
+body.auth{
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,7 +19,7 @@ body{
   background: #f4f6f8;
 }
 
-/* Le “container” principal */
+/* container login */
 .body{
   width: min(900px, 92vw);
   height: 520px;
@@ -25,7 +30,7 @@ body{
   box-shadow: 0 18px 45px rgba(0,0,0,0.12);
 }
 
-/* PANNEAU GAUCHE */
+/* panneau gauche login */
 .gauche{
   flex: 1;
   background: #ffffff;
@@ -44,17 +49,12 @@ body{
   justify-content: center;
 }
 
-/* Social buttons */
+/* boutons sociaux */
 .boutonAutres{
   display: flex;
   justify-content: center;
   gap: 10px;
   align-items: center;
-}
-
-.boutonAutres > div,
-.boutonAutres{
-  width: 100%;
 }
 
 .boutonAutres button{
@@ -72,14 +72,15 @@ body{
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
-.boutonAutres p ,.oujus p {
+.boutonAutres p,
+.oujus p{
   margin-top: 8px;
   font-size: 13px;
   color: #7f8c8d;
   text-align: center;
 }
 
-/* Form */
+/* form */
 form{
   width: 100%;
   display: flex;
@@ -88,9 +89,7 @@ form{
   margin-top: 6px;
 }
 
-.input_group label{
-  display: none; /* comme l’image : pas de labels visibles */
-}
+.input_group label{ display: none; }
 
 .input_group input{
   width: 100%;
@@ -121,9 +120,7 @@ form{
   text-decoration: none;
 }
 
-.forgot_password a:hover{
-  text-decoration: underline;
-}
+.forgot_password a:hover{ text-decoration: underline; }
 
 .submit_button{
   display: flex;
@@ -149,7 +146,7 @@ form{
   transform: translateY(-1px);
 }
 
-/* PANNEAU DROIT */
+/* panneau droit login */
 .droite{
   flex: 1;
   background: linear-gradient(135deg, #4db6aa, #3b9ea6);
@@ -191,15 +188,13 @@ form{
   background: rgba(255,255,255,0.15);
   transform: translateY(-1px);
 }
+
 .oujus{
   display: flex;
   justify-content: center;
-
 }
 
-
-
-/* Responsive (mobile) */
+/* responsive auth */
 @media (max-width: 780px){
   .body{
     height: auto;
@@ -210,5 +205,666 @@ form{
   }
   .submit_button button{
     width: 100%;
+  }
+}
+
+/* =========================
+   DASHBOARD
+   ========================= */
+body.dashboard{
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: block;
+}
+
+/* Layout général (sidebar + contenu) */
+.layout{
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 18px;
+  padding: 18px;
+}
+
+/* Sidebar */
+.left_bar{
+  background: #ffffff;
+  border: 1px solid #e9edf2;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.logo h2{
+  font-size: 20px;
+  font-weight: 900;
+  color: #111827;
+  padding: 6px 8px;
+}
+
+/* menu */
+.menu ul,
+.settings ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 0;
+}
+
+.menu li,
+.settings li{
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #374151;
+  transition: 0.2s;
+}
+
+.menu li:hover,
+.settings li:hover{
+  background: #f3f4f6;
+}
+
+.menu li:first-child{
+  background: #eef2ff;
+  color: #1f2a7a;
+  font-weight: 800;
+}
+
+/* settings en bas */
+.settings{
+  margin-top: auto;
+}
+
+.settings li:last-child{
+  color: #b91c1c;
+}
+
+/* Main zone : IMPORTANT -> 2 colonnes, tickets à gauche, contenu à droite */
+.main_bar{
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: 320px 1fr; /* gauche tickets, droite contenu */
+  gap: 18px;
+  align-items: start;
+}
+
+/* Tickets : en haut à gauche */
+.task_overview{
+  grid-column: 1;
+  align-self: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 cartes côte à côte */
+  gap: 14px;
+}
+
+/* Contenu droite */
+.client_project{
+  grid-column: 2;
+  align-self: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* users + projets */
+  gap: 14px;
+}
+
+/* le tableau prend toute la largeur sous les 2 cards */
+.customer{
+  grid-column: 1 / -1;
+}
+
+/* Style “card” pour tes blocs */
+.card,
+.yestickets,
+.notickets,
+.customer{
+  background: #ffffff;
+  border: 1px solid #e9edf2;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ✅ IMPORTANT : on neutralise seulement les WRAPPERS, pas les cards */
+.client_project > .users,
+.client_project > .projects{
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Titres des cartes */
+.card_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card_title{
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 800;
+}
+
+.big{
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.small{
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Chips */
+.chip{
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 800;
+}
+
+.chip.green{ background: #ecfdf5; color: #047857; }
+.chip.orange{ background: #fff7ed; color: #c2410c; }
+
+/* Table clients */
+.customer table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+.customer th{
+  text-align: left;
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 900;
+  padding: 10px 10px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.customer td{
+  padding: 12px 10px;
+  font-size: 13px;
+  color: #374151;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+/* Alternance de couleurs */
+.customer tr:nth-child(even) td{
+  background: #f8fafc;
+}
+
+/* hover pour mieux lire */
+.customer tr:hover td{
+  background: #eef2ff;
+}
+
+/* Responsive dashboard */
+@media (max-width: 980px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+  .main_bar{
+    grid-template-columns: 1fr;
+  }
+  .task_overview{
+    grid-template-columns: 1fr; /* tickets l'un sous l'autre sur mobile */
+  }
+  .client_project{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   PROJETS (page projets.html)
+   à ajouter à la fin
+   ========================= */
+
+.menu a,
+.settings a{
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.menu .is-active{
+  background: #eef2ff;
+  color: #1f2a7a;
+  font-weight: 800;
+}
+
+/* zone principale projets */
+.projects_main{
+  padding-top: 6px;
+}
+
+/* header */
+.page_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.page_title h1{
+  font-size: 30px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.page_title p{
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* bouton primary (réutilisable) */
+.btn_primary{
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.2s;
+}
+
+.btn_primary:hover{
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+/* filtres */
+.filters{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.filter input,
+.filter select{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #e9edf2;
+  background: #ffffff;
+  outline: none;
+  font-size: 14px;
+  color: #374151;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.filter input:focus,
+.filter select:focus{
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* grille des projets */
+.project_grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* carte projet (on garde .card existant) */
+.project_card{
+  padding: 18px;
+}
+
+.project_name{
+  font-size: 18px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.project_client{
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* contrat + barre */
+.project_contract{
+  margin-top: 10px;
+}
+
+.muted{
+  color: #6b7280;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.progress{
+  height: 8px;
+  background: #eef2f7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress .bar{
+  height: 100%;
+  background: #22c55e;
+  border-radius: 999px;
+}
+
+/* stats tickets */
+.project_stats{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  border-top: 1px solid #eef2f7;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.project_stats div{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project_stats strong{
+  font-size: 18px;
+  color: #111827;
+}
+
+.project_stats span{
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* footer */
+.project_footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.avatars{
+  display: flex;
+  align-items: center;
+}
+
+.avatar{
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1f2a7a;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 12px;
+  border: 2px solid #ffffff;
+  margin-left: -8px;
+}
+
+.avatar:first-child{
+  margin-left: 0;
+}
+
+.avatar.more{
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* boutons icônes */
+.icons{
+  display: flex;
+  gap: 10px;
+}
+
+.icon_btn{
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid #e9edf2;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon_btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .project_grid{
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 980px){
+  .filters{
+    grid-template-columns: 1fr;
+  }
+  .project_grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   TICKETS KANBAN (statique)
+   ========================= */
+
+.tickets_main{
+  padding-top: 6px;
+}
+
+/* réutilise .page_head, .filters, .btn_primary si déjà présents
+   si tu ne les as pas, je te les redonne rapidement : */
+.page_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.page_titles h1{
+  font-size: 30px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.page_titles p{
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.btn_primary{
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.2s;
+}
+
+.btn_primary:hover{
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+/* filtres */
+.filters{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.field input,
+.field select{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #e9edf2;
+  background: #ffffff;
+  outline: none;
+  font-size: 14px;
+  color: #374151;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.field input:focus,
+.field select:focus{
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* BOARD */
+.board{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(280px, 1fr));
+  gap: 14px;
+
+  /* si écran petit => scroll horizontal */
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+/* colonne */
+.column{
+  background: transparent;
+}
+
+.column_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.column_head h2{
+  font-size: 14px;
+  font-weight: 900;
+  color: #374151;
+  letter-spacing: 0.2px;
+}
+
+.count{
+  min-width: 34px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #111827;
+  background: #f3f4f6;
+  border: 1px solid #e9edf2;
+}
+
+.count.ok{ background: #ecfdf5; color: #047857; border-color: #d1fae5; }
+.count.warn{ background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+
+/* corps colonne */
+.column_body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ticket card */
+.ticket_card{
+  padding: 14px;
+}
+
+.ticket_top{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ticket_title{
+  font-size: 14px;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.ticket_meta{
+  margin-top: 10px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.ticket_tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ticket_footer{
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.muted{
+  color: #6b7280;
+}
+
+/* badges priorité (réutilise .chip) */
+.chip.pri{
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 900;
+}
+
+.chip.pri.low{ background: #ecfdf5; color: #047857; }
+.chip.pri.med{ background: #eef2ff; color: #1f2a7a; }
+.chip.pri.high{ background: #fef2f2; color: #b91c1c; }
+
+/* tags */
+.chip.tag{
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 800;
+}
+
+.chip.tag.gray{
+  background: #f8fafc;
+  color: #475569;
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .filters{
+    grid-template-columns: 1fr;
   }
 }

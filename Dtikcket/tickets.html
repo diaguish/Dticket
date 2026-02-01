@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Tickets</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard tickets-page">
+  <div class="layout">
+
+    <aside class="left_bar">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li class="is-active"><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="tickets_main">
+
+      <header class="page_head">
+        <div class="page_titles">
+          <h1>Tickets</h1>
+          <p>Vue en colonnes (statuts) — style Kanban</p>
+        </div>
+
+        <div class="page_actions">
+          <a class="btn_primary" href="ticket-create.html">+ Nouveau ticket</a>
+        </div>
+      </header>
+
+      <section class="filters" aria-label="Filtres tickets">
+        <div class="field search">
+          <input type="text" placeholder="Rechercher un ticket..." />
+        </div>
+
+        <div class="field">
+          <select>
+            <option>Projet</option>
+            <option>Refonte Site Web</option>
+            <option>App Mobile</option>
+            <option>Audit SEO</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <select>
+            <option>Priorité</option>
+            <option>Basse</option>
+            <option>Moyenne</option>
+            <option>Haute</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <select>
+            <option>Type</option>
+            <option>Inclus</option>
+            <option>Facturable</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- BOARD KANBAN -->
+      <section class="board" aria-label="Board tickets">
+
+        <!-- Colonne 1 -->
+        <section class="column" aria-label="Nouveau">
+          <header class="column_head">
+            <h2>Nouveau</h2>
+            <span class="count">3</span>
+          </header>
+
+          <div class="column_body">
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Bug connexion</h3>
+                <span class="chip pri high">Haute</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Refonte Site Web</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag">Inclus</span>
+                <span class="chip tag gray">UI</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 2h / 5h</span>
+                <span class="muted">Assigné : Diago</span>
+              </div>
+            </article>
+
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Demande ajout page FAQ</h3>
+                <span class="chip pri med">Moyenne</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Refonte Site Web</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag">Inclus</span>
+                <span class="chip tag gray">Contenu</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 0h / 3h</span>
+                <span class="muted">Assigné : Martin</span>
+              </div>
+            </article>
+
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Problème d’accès admin</h3>
+                <span class="chip pri med">Moyenne</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>App Mobile</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag orange">Facturable</span>
+                <span class="chip tag gray">Back</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 1h / 2h</span>
+                <span class="muted">Assigné : John</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Colonne 2 -->
+        <section class="column" aria-label="En cours">
+          <header class="column_head">
+            <h2>En cours</h2>
+            <span class="count">2</span>
+          </header>
+
+          <div class="column_body">
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Optimiser performance page accueil</h3>
+                <span class="chip pri low">Basse</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Audit SEO</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag">Inclus</span>
+                <span class="chip tag gray">Perf</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 3h / 6h</span>
+                <span class="muted">Assigné : Diago</span>
+              </div>
+            </article>
+
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Correctif responsive mobile</h3>
+                <span class="chip pri high">Haute</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Refonte Site Web</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag orange">Facturable</span>
+                <span class="chip tag gray">CSS</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 4h / 4h</span>
+                <span class="muted">Assigné : Martin</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Colonne 3 -->
+        <section class="column" aria-label="À valider">
+          <header class="column_head">
+            <h2>À valider</h2>
+            <span class="count warn">1</span>
+          </header>
+
+          <div class="column_body">
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Mise à jour contenu landing</h3>
+                <span class="chip pri med">Moyenne</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Refonte Site Web</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag orange">Facturable</span>
+                <span class="chip tag gray">Contenu</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 2h / 2h</span>
+                <span class="muted">Assigné : John</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Colonne 4 -->
+        <section class="column" aria-label="Terminé">
+          <header class="column_head">
+            <h2>Terminé</h2>
+            <span class="count ok">2</span>
+          </header>
+
+          <div class="column_body">
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Création formulaire contact</h3>
+                <span class="chip pri low">Basse</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Refonte Site Web</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag">Inclus</span>
+                <span class="chip tag gray">Front</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 1h / 1h</span>
+                <span class="muted">Assigné : Diago</span>
+              </div>
+            </article>
+
+            <article class="ticket_card card">
+              <div class="ticket_top">
+                <h3 class="ticket_title">Correction typo header</h3>
+                <span class="chip pri low">Basse</span>
+              </div>
+
+              <p class="ticket_meta">Projet : <strong>Audit SEO</strong></p>
+
+              <div class="ticket_tags">
+                <span class="chip tag">Inclus</span>
+                <span class="chip tag gray">UI</span>
+              </div>
+
+              <div class="ticket_footer">
+                <span class="muted">Temps : 0.5h / 0.5h</span>
+                <span class="muted">Assigné : Martin</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Projets</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard projects">
+  <div class="layout">
+
+    <aside class="left_bar">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu">
+     <ul>
+    <li ><a href="dashboard.html">Dashboard</a></li>
+    <li class="is-active"><a href="projects.html">Projets</a></li>
+    <li><a href="clients.html">Clients</a></li>
+    <li><a href="tickets.html">Tickets</a></li>
+    <li><a href="settings.html">Paramètres</a></li>
+  </ul>
+</nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="projects_main">
+      <header class="page_header">
+        <div class="page_title">
+          <h1>Projets</h1>
+          <p>Tous les projets de vos clients</p>
+        </div>
+
+        <div class="page_actions">
+          <button class="btn_primary" type="button">+ Nouveau projet</button>
+        </div>
+      </header>
+
+      <section class="filters" aria-label="Filtres projets">
+        <div class="filter search">
+          <input type="text" placeholder="Rechercher un projet..." />
+        </div>
+
+        <div class="filter">
+          <select>
+            <option>Client</option>
+            <option>Client A</option>
+            <option>Client B</option>
+            <option>Client C</option>
+          </select>
+        </div>
+
+        <div class="filter">
+          <select>
+            <option>Statut</option>
+            <option>Actif</option>
+            <option>En pause</option>
+            <option>Terminé</option>
+          </select>
+        </div>
+
+        <div class="filter">
+          <select>
+            <option>Priorité</option>
+            <option>Basse</option>
+            <option>Moyenne</option>
+            <option>Haute</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="project_grid" aria-label="Liste des projets">
+
+        <article class="project_card card">
+          <div class="card_head">
+            <div>
+              <h3 class="project_name">Refonte Site Web</h3>
+              <p class="project_client">Client A</p>
+            </div>
+            <span class="chip green">Actif</span>
+          </div>
+
+          <div class="project_contract">
+            <p class="muted">Heures incluses : <strong>50h</strong></p>
+            <div class="progress">
+              <div class="bar" style="width: 68%;"></div>
+            </div>
+            <p class="muted">Restantes : <strong>16h</strong></p>
+          </div>
+
+          <div class="project_stats">
+            <div><strong>4</strong><span>Ouverts</span></div>
+            <div><strong>2</strong><span>En cours</span></div>
+            <div><strong>1</strong><span>À valider</span></div>
+          </div>
+
+          <footer class="project_footer">
+            <div class="avatars">
+              <span class="avatar">D</span>
+              <span class="avatar">M</span>
+              <span class="avatar">J</span>
+              <span class="avatar more">+2</span>
+            </div>
+            <div class="icons">
+              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+            </div>
+          </footer>
+        </article>
+
+        <article class="project_card card">
+          <div class="card_head">
+            <div>
+              <h3 class="project_name">App Web </h3>
+              <p class="project_client">Client B</p>
+            </div>
+            <span class="chip">En pause</span>
+          </div>
+
+          <div class="project_contract">
+            <p class="muted">Heures incluses : <strong>80h</strong></p>
+            <div class="progress">
+              <div class="bar" style="width: 10%;"></div>
+            </div>
+            <p class="muted">Restantes : <strong>72h</strong></p>
+          </div>
+
+          <div class="project_stats">
+            <div><strong>0</strong><span>Ouverts</span></div>
+            <div><strong>1</strong><span>En cours</span></div>
+            <div><strong>0</strong><span>À valider</span></div>
+          </div>
+
+          <footer class="project_footer">
+            <div class="avatars">
+              <span class="avatar">A</span>
+              <span class="avatar">S</span>
+              <span class="avatar more">+1</span>
+            </div>
+            <div class="icons">
+              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+            </div>
+          </footer>
+        </article>
+
+        <article class="project_card card">
+          <div class="card_head">
+            <div>
+              <h3 class="project_name">Audit SEO</h3>
+              <p class="project_client">Client C</p>
+            </div>
+            <span class="chip orange">Terminé</span>
+          </div>
+
+          <div class="project_contract">
+            <p class="muted">Heures incluses : <strong>20h</strong></p>
+            <div class="progress">
+              <div class="bar" style="width: 100%;"></div>
+            </div>
+            <p class="muted">Restantes : <strong>0h</strong></p>
+          </div>
+
+          <div class="project_stats">
+            <div><strong>0</strong><span>Ouverts</span></div>
+            <div><strong>0</strong><span>En cours</span></div>
+            <div><strong>0</strong><span>À valider</span></div>
+          </div>
+
+          <footer class="project_footer">
+            <div class="avatars">
+              <span class="avatar">K</span>
+              <span class="avatar">R</span>
+            </div>
+            <div class="icons">
+              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+            </div>
+          </footer>
+        </article>
+
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>
