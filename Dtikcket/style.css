@@ -677,3 +677,352 @@ body.dashboard{
   font-size: 12px;
   color: var(--muted);
 }
+
+/* =========================
+   TICKETS KANBAN — IMPROVED UI
+   (sidebar fixed + topbar sticky + scroll clean)
+   ========================= */
+
+/* Layout: on enlève le scroll global sur la page */
+body.dashboard{
+  height: 100vh;
+  overflow: hidden; /* IMPORTANT : évite que la sidebar bouge */
+}
+
+/* La grille prend toute la hauteur */
+.layout{
+  height: 100vh;
+}
+
+/* Sidebar fixe (scroll interne si menu trop grand) */
+.left_bar{
+  position: sticky;
+  top: var(--gap-4);
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: auto;
+}
+
+/* Zone main: scroll vertical uniquement ici */
+.tickets_main,
+.projects_main,
+.main_bar{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow-y: auto;
+  padding-right: 6px; /* petit confort */
+}
+
+/* =========================
+   TOPBAR + SUBNAV (Kanban header)
+   ========================= */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding: 10px 0 12px;
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 520px) 1fr;
+  align-items: center;
+  gap: var(--gap-3);
+}
+
+.topbar_left{
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2);
+}
+
+.back_link{
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: var(--text-2);
+  box-shadow: var(--shadow);
+}
+
+.topbar_titles .topbar_kicker{
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.topbar_titles .topbar_title{
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.topbar_center .search input{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  outline: none;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.topbar_center .search input:focus{
+  border-color: #93c5fd;
+  box-shadow: var(--ring);
+}
+
+.topbar_right{
+  justify-self: end;
+  display: flex;
+  gap: var(--gap-2);
+  align-items: center;
+}
+
+.icon_btn{
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+  font-weight: 900;
+}
+
+.icon_btn:hover{
+  transform: translateY(-1px);
+}
+
+/* Subnav */
+.subnav{
+  position: sticky;
+  top: 68px; /* sous la topbar */
+  z-index: 9;
+  background: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.subnav_list{
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.subnav_item a{
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 800;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+}
+
+.subnav_item.is-active a{
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+
+.btn--ghost{
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+}
+
+/* =========================
+   BOARD: pas de scroll horizontal global,
+   board prend la hauteur dispo,
+   colonnes scrollent à l'intérieur.
+   ========================= */
+.board{
+  height: calc(100vh - 210px); 
+  /* 210px = topbar + subnav + marges (tu peux ajuster) */
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap: var(--gap-3);
+
+  overflow-x: auto;    /* si écran petit -> scroll horizontal OK */
+  overflow-y: hidden;  /* pas de scroll vertical du board */
+  padding-bottom: 10px;
+}
+
+/* Colonne style FourAxis */
+.column{
+  background: transparent;
+  min-height: 100%;
+}
+
+.column_head{
+  padding: 0 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.column_title{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column_title h2{
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--text-2);
+}
+
+.column_actions{
+  display: flex;
+  gap: 8px;
+}
+
+/* Pastilles couleur comme l'exemple */
+.dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.dot--new{ background: #60a5fa; }
+.dot--progress{ background: #a78bfa; }
+.dot--pending{ background: #fb923c; }
+.dot--done{ background: #34d399; }
+
+/* Fond léger des colonnes (comme le screenshot) */
+.column--new .column_body{ background: #f5faff; }
+.column--progress .column_body{ background: #faf5ff; }
+.column--pending .column_body{ background: #fff7ed; }
+.column--done .column_body{ background: #f0fdf4; }
+
+/* Corps colonne: carte container + scroll */
+.column_body{
+  border-radius: var(--r-lg);
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2);
+
+  height: calc(100% - 42px); /* enlève la hauteur du head */
+  overflow-y: auto;          /* scroll vertical DANS la colonne */
+}
+
+/* Carte ticket: plus compact + effet clean */
+.ticket_card{
+  padding: 14px;
+  border-radius: var(--r-lg);
+}
+
+.ticket_desc{
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* Footer de ticket */
+.ticket_footer{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Avatars simples */
+.avatars{
+  display: flex;
+  align-items: center;
+}
+
+.avatar{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 12px;
+  border: 2px solid var(--surface);
+  margin-left: -8px;
+}
+.avatar:first-child{ margin-left: 0; }
+
+/* Counts */
+.count{
+  min-width: 34px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+}
+
+.count--ok{
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: #d1fae5;
+}
+.count--warn{
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border-color: #fed7aa;
+}
+
+/* Chips supplémentaires (si tu veux)
+   ex: chip--danger, chip--info, chip--neutral */
+.chip--danger{ background:#fef2f2; color:#b91c1c; }
+.chip--info{ background: var(--primary-soft); color: var(--primary-text); }
+.chip--neutral{ background:#f3f4f6; color: var(--text-2); }
+
+/* Responsive */
+@media (max-width: 980px){
+  body.dashboard{
+    overflow: auto; /* sur mobile on remet simple */
+  }
+  .layout{
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .left_bar{
+    position: relative;
+    height: auto;
+  }
+  .tickets_main{
+    height: auto;
+    overflow: visible;
+  }
+  .topbar{
+    grid-template-columns: 1fr;
+  }
+  .subnav{
+    top: 0;
+    position: relative;
+  }
+  .board{
+    height: auto;
+  }
+  .column_body{
+    height: auto;
+    overflow: visible;
+  }
+}

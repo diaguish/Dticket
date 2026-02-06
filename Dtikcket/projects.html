@@ -41,17 +41,17 @@
         </div>
 
         <div class="page_actions">
-          <button class="btn_primary" type="button">+ Nouveau projet</button>
+          <button class="btn btn--primary" type="button">+ Nouveau projet</button>
         </div>
       </header>
 
       <section class="filters" aria-label="Filtres projets">
         <div class="filter search">
-          <input type="text" placeholder="Rechercher un projet..." />
+          <input class="input" type="text" placeholder="Rechercher un projet..." />
         </div>
 
         <div class="filter">
-          <select>
+          <select class="select">
             <option>Client</option>
             <option>Client A</option>
             <option>Client B</option>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="filter">
-          <select>
+          <select class="select">
             <option>Statut</option>
             <option>Actif</option>
             <option>En pause</option>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="filter">
-          <select>
+          <select class="select">
             <option>Priorité</option>
             <option>Basse</option>
             <option>Moyenne</option>
@@ -86,7 +86,7 @@
               <h3 class="project_name">Refonte Site Web</h3>
               <p class="project_client">Client A</p>
             </div>
-            <span class="chip green">Actif</span>
+            <span class="chip">Actif</span>
           </div>
 
           <div class="project_contract">
@@ -98,14 +98,14 @@
           </div>
 
           <div class="project_stats">
-            <div><strong>4</strong><span>Ouverts</span></div>
-            <div><strong>2</strong><span>En cours</span></div>
-            <div><strong>1</strong><span>À valider</span></div>
+            <div><strong>4</strong><span class="chip chip--success">Ouverts</span></div>
+            <div><strong>2</strong><span class="chip chip--soft-primary">En cours</span></div>
+            <div><strong>1</strong><span class="chip chip--warning">À valider</span></div>
           </div>
 
           <footer class="project_footer">
             <div class="avatars">
-              <span class="avatar">D</span>
+              <span class="avatar" >D</span>
               <span class="avatar">M</span>
               <span class="avatar">J</span>
               <span class="avatar more">+2</span>
@@ -135,9 +135,9 @@
           </div>
 
           <div class="project_stats">
-            <div><strong>0</strong><span>Ouverts</span></div>
-            <div><strong>1</strong><span>En cours</span></div>
-            <div><strong>0</strong><span>À valider</span></div>
+            <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
+            <div><strong>1</strong><span class="chip chip--soft-primary">En cours</span></div>
+            <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
           </div>
 
           <footer class="project_footer">
@@ -171,9 +171,9 @@
           </div>
 
           <div class="project_stats">
-            <div><strong>0</strong><span>Ouverts</span></div>
-            <div><strong>0</strong><span>En cours</span></div>
-            <div><strong>0</strong><span>À valider</span></div>
+            <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
+            <div><strong>0</strong><span class="chip chip--soft-primary">En cours</span></div>
+            <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
           </div>
 
           <footer class="project_footer">

@@ -10,33 +10,35 @@
 
 <body class="dashboard">
   <div class="layout">
+
     <aside class="left_bar">
       <div class="logo">
         <h2>Dticket</h2>
       </div>
 
       <nav class="menu">
-     <ul>
-    <li class="is-active"><a href="dashboard.html">Dashboard</a></li>
-    <li><a href="projects.html">Projets</a></li>
-    <li><a href="clients.html">Clients</a></li>
-    <li><a href="tickets.html">Tickets</a></li>
-    <li><a href="settings.html">Paramètres</a></li>
-  </ul>
-</nav>
-
+        <ul>
+          <li class="is-active"><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
 
       <div class="settings">
         <ul>
           <li><a href="settings.html">Paramètres</a></li>
-          <li><a href="login.html">Deconnexion</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
         </ul>
       </div>
     </aside>
 
     <main class="main_bar">
-         <section class="task_overview">
-        <div class="yestickets">
+
+      <section class="task_overview" aria-label="Statistiques tickets">
+
+        <div class="card yestickets">
           <div class="card_head">
             <p class="card_title">Tickets ouverts</p>
             <span class="chip chip--success">Validés</span>
@@ -45,7 +47,7 @@
           <p class="small">Pris en charge</p>
         </div>
 
-        <div class="notickets">
+        <div class="card notickets">
           <div class="card_head">
             <p class="card_title">Tickets en attente</p>
             <span class="chip chip--warning">À valider</span>
@@ -53,13 +55,16 @@
           <p class="big">12</p>
           <p class="small">En attente de validation</p>
         </div>
+
       </section>
-      <section class="client_project">
+
+      <section class="client_project" aria-label="Statistiques et clients">
+
         <div class="users">
           <div class="card users">
             <div class="card_head">
               <p class="card_title">Utilisateurs</p>
-              <span class="chip">+8%</span>
+              <span class="chip chip--soft-primary">+8%</span>
             </div>
             <p class="big">201</p>
             <p class="small">Collaborateurs + clients</p>
@@ -70,14 +75,14 @@
           <div class="card projects">
             <div class="card_head">
               <p class="card_title">Projets</p>
-              <span class="chip">Actifs</span>
+              <span class="chip chip--soft-primary">Actifs</span>
             </div>
             <p class="big">36</p>
             <p class="small">Actifs / Inactifs</p>
           </div>
         </div>
 
-        <div class="customer">
+        <div class="card customer">
           <table>
             <tr>
               <th>Nom</th>
@@ -106,9 +111,8 @@
             </tr>
           </table>
         </div>
-      </section>
 
-     
+      </section>
 
     </main>
   </div>
