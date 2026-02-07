@@ -37,7 +37,7 @@
     <!-- CONTENU -->
     <main class="tickets_main">
 
-      <!-- TOPBAR (comme sur ton exemple) -->
+      <!-- TOPBAR -->
       <header class="topbar">
         <div class="topbar_left">
           <a class="back_link" href="projects.html" aria-label="Retour projets">←</a>
@@ -54,20 +54,15 @@
         </div>
 
         <div class="topbar_right">
-          <a class="btn btn--primary" href="ticket-create.html">+ Create</a>
+          <!-- ✅ bouton qui ouvre le modal -->
+          <a class="btn btn--primary" href="#" id="openCreateTicket">+ Create</a>
           <button class="icon_btn" type="button" aria-label="Notifications">🔔</button>
-          <button class="icon_btn" type="button" aria-label="Profil">SA</button>
         </div>
       </header>
 
-      <!-- SOUS-NAV (Kanban / List / Files / etc.) -->
       <nav class="subnav" aria-label="Vues tickets">
         <ul class="subnav_list">
           <li class="subnav_item is-active"><a href="tickets.html">Kanban</a></li>
-          <li class="subnav_item"><a href="#">List</a></li>
-          <li class="subnav_item"><a href="#">Files</a></li>
-          <li class="subnav_item"><a href="#">Dashboard</a></li>
-          <li class="subnav_item"><a href="#">Setting</a></li>
         </ul>
 
         <div class="subnav_actions">
@@ -93,7 +88,8 @@
             </div>
           </header>
 
-          <div class="column_body">
+          <!-- ✅ id pour que le JS ajoute ici -->
+          <div class="column_body" id="colNew">
 
             <article class="ticket_card card">
               <header class="ticket_top">
@@ -193,7 +189,6 @@
           </header>
 
           <div class="column_body">
-
             <article class="ticket_card card">
               <header class="ticket_top">
                 <span class="chip chip--neutral">Low</span>
@@ -245,7 +240,6 @@
                 </div>
               </footer>
             </article>
-
           </div>
         </section>
 
@@ -366,7 +360,60 @@
 
       </section>
     </main>
-
   </div>
+
+  <!-- ✅ MODAL (POP-UP) placé dans le body, à la fin -->
+  <div class="modal hidden" id="ticketModal" aria-hidden="true">
+    <div class="modal_backdrop" id="closeModalBackdrop"></div>
+
+    <div class="modal_content card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal_head">
+        <h2 id="modalTitle">Créer un ticket</h2>
+        <button class="icon_btn" type="button" id="closeModalBtn" aria-label="Fermer">✕</button>
+      </header>
+
+      <form id="createTicketForm" class="modal_form">
+        <div class="field">
+          <label for="ticketTitle">Titre</label>
+          <input class="input" id="ticketTitle" type="text" placeholder="Ex: Bug connexion" required />
+        </div>
+
+        <div class="field">
+          <label for="ticketProject">Projet</label>
+          <select class="select" id="ticketProject" required>
+            <option value="">Choisir un projet</option>
+            <option>Refonte Site Web</option>
+            <option>App Mobile</option>
+            <option>Audit SEO</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="ticketPriority">Priorité</label>
+          <select class="select" id="ticketPriority" required>
+            <option value="low">Basse</option>
+            <option value="med" selected>Moyenne</option>
+            <option value="high">Haute</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="ticketType">Type</label>
+          <select class="select" id="ticketType" required>
+            <option value="inclus">Inclus</option>
+            <option value="facturable">Facturable</option>
+          </select>
+        </div>
+
+        <div class="modal_actions">
+          <button class="btn btn--ghost" type="button" id="cancelCreate">Annuler</button>
+          <button class="btn btn--primary" type="submit">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ JS en dernier -->
+  <script src="tickets.js"></script>
 </body>
 </html>

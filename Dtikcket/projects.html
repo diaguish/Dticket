@@ -8,22 +8,83 @@
 </head>
 
 <body class="dashboard projects">
+
+  <!-- Toggle (CSS only) -->
+  <input type="checkbox" id="navToggle" class="nav_toggle" />
+
+  <!-- Overlay (clique dessus = ferme) -->
+  <label for="navToggle" class="nav_overlay" aria-hidden="true"></label>
+
+  <!-- ✅ MODAL (pop-up) création projet -->
+  <div class="modal hidden" id="projectModal" aria-hidden="true">
+    <div class="modal_backdrop" id="closeProjectBackdrop"></div>
+
+    <div class="modal_content card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <header class="modal_head">
+        <h2 id="projectModalTitle">Créer un projet</h2>
+        <button class="icon_btn" type="button" id="closeProjectBtn" aria-label="Fermer">✕</button>
+      </header>
+
+      <form id="createProjectForm" class="modal_form">
+        <div class="field">
+          <label for="projectName">Nom du projet</label>
+          <input class="input" id="projectName" type="text" placeholder="Ex : Refonte Site Web" required />
+        </div>
+
+        <div class="field">
+          <label for="projectClient">Client</label>
+          <select class="select" id="projectClient" required>
+            <option value="">Choisir un client</option>
+            <option>Client A</option>
+            <option>Client B</option>
+            <option>Client C</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="projectStatus">Statut</label>
+          <select class="select" id="projectStatus" required>
+            <option value="actif" selected>Actif</option>
+            <option value="pause">En pause</option>
+            <option value="termine">Terminé</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="projectHours">Heures incluses</label>
+          <input class="input" id="projectHours" type="number" min="0" step="1" placeholder="Ex : 50" required />
+        </div>
+
+        <div class="field">
+          <label for="projectRemaining">Heures restantes</label>
+          <input class="input" id="projectRemaining" type="number" min="0" step="1" placeholder="Ex : 16" required />
+        </div>
+
+        <div class="modal_actions">
+          <button class="btn btn--ghost" type="button" id="cancelProjectCreate">Annuler</button>
+          <button class="btn btn--primary" type="submit">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="layout">
 
-    <aside class="left_bar">
+    <!-- SIDEBAR -->
+    <aside class="left_bar" aria-label="Menu latéral">
       <div class="logo">
         <h2>Dticket</h2>
       </div>
 
-      <nav class="menu">
-     <ul>
-    <li ><a href="dashboard.html">Dashboard</a></li>
-    <li class="is-active"><a href="projects.html">Projets</a></li>
-    <li><a href="clients.html">Clients</a></li>
-    <li><a href="tickets.html">Tickets</a></li>
-    <li><a href="settings.html">Paramètres</a></li>
-  </ul>
-</nav>
+      <nav class="menu" aria-label="Navigation">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li class="is-active"><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
 
       <div class="settings">
         <ul>
@@ -33,7 +94,23 @@
       </div>
     </aside>
 
+    <!-- MAIN -->
     <main class="projects_main">
+
+      <!-- TOPBAR MOBILE -->
+      <header class="mobile_topbar" aria-label="Topbar mobile">
+        <label for="navToggle" class="burger_btn" aria-label="Ouvrir le menu">☰</label>
+
+        <div class="mobile_titles">
+          <h1 class="mobile_title">Projets</h1>
+          <p class="mobile_subtitle">Tous les projets</p>
+        </div>
+
+        <!-- ✅ ouvre modal -->
+        <button class="btn btn--primary mobile_plus" id="openCreateProjectMobile" type="button" aria-label="Nouveau projet">＋</button>
+      </header>
+
+      <!-- HEADER DESKTOP -->
       <header class="page_header">
         <div class="page_title">
           <h1>Projets</h1>
@@ -41,10 +118,12 @@
         </div>
 
         <div class="page_actions">
-          <button class="btn btn--primary" type="button">+ Nouveau projet</button>
+          <!-- ✅ ouvre modal -->
+          <button class="btn btn--primary" id="openCreateProject" type="button">+ Nouveau projet</button>
         </div>
       </header>
 
+      <!-- SEARCH + FILTERS -->
       <section class="filters" aria-label="Filtres projets">
         <div class="filter search">
           <input class="input" type="text" placeholder="Rechercher un projet..." />
@@ -78,119 +157,127 @@
         </div>
       </section>
 
-      <section class="project_grid" aria-label="Liste des projets">
+      <!-- ✅ SCROLL ZONE : seule cette partie doit scroller -->
+      <section class="projects_scroll" aria-label="Zone scroll projets">
+        <!-- ✅ on met un id ici pour que le JS puisse ajouter des cartes -->
+        <section class="project_grid" id="projectGrid" aria-label="Liste des projets">
 
-        <article class="project_card card">
-          <div class="card_head">
-            <div>
-              <h3 class="project_name">Refonte Site Web</h3>
-              <p class="project_client">Client A</p>
+          <article class="project_card card">
+            <div class="card_head">
+              <div>
+                <h3 class="project_name">Refonte Site Web</h3>
+                <p class="project_client">Client A</p>
+              </div>
+              <span class="chip">Actif</span>
             </div>
-            <span class="chip">Actif</span>
-          </div>
 
-          <div class="project_contract">
-            <p class="muted">Heures incluses : <strong>50h</strong></p>
-            <div class="progress">
-              <div class="bar" style="width: 68%;"></div>
+            <div class="project_contract">
+              <p class="muted">Heures incluses : <strong>50h</strong></p>
+              <div class="progress">
+                <div class="bar" style="width: 68%;"></div>
+              </div>
+              <p class="muted">Restantes : <strong>16h</strong></p>
             </div>
-            <p class="muted">Restantes : <strong>16h</strong></p>
-          </div>
 
-          <div class="project_stats">
-            <div><strong>4</strong><span class="chip chip--success">Ouverts</span></div>
-            <div><strong>2</strong><span class="chip chip--soft-primary">En cours</span></div>
-            <div><strong>1</strong><span class="chip chip--warning">À valider</span></div>
-          </div>
-
-          <footer class="project_footer">
-            <div class="avatars">
-              <span class="avatar" >D</span>
-              <span class="avatar">M</span>
-              <span class="avatar">J</span>
-              <span class="avatar more">+2</span>
+            <div class="project_stats">
+              <div><strong>4</strong><span class="chip chip--success">Ouverts</span></div>
+              <div><strong>2</strong><span class="chip chip--soft-primary">En cours</span></div>
+              <div><strong>1</strong><span class="chip chip--warning">À valider</span></div>
             </div>
-            <div class="icons">
-              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
-              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
-            </div>
-          </footer>
-        </article>
 
-        <article class="project_card card">
-          <div class="card_head">
-            <div>
-              <h3 class="project_name">App Web </h3>
-              <p class="project_client">Client B</p>
-            </div>
-            <span class="chip">En pause</span>
-          </div>
+            <footer class="project_footer">
+              <div class="avatars">
+                <span class="avatar">D</span>
+                <span class="avatar">M</span>
+                <span class="avatar">J</span>
+                <span class="avatar more">+2</span>
+              </div>
+              <div class="icons">
+                <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+              </div>
+            </footer>
+          </article>
 
-          <div class="project_contract">
-            <p class="muted">Heures incluses : <strong>80h</strong></p>
-            <div class="progress">
-              <div class="bar" style="width: 10%;"></div>
+          <article class="project_card card">
+            <div class="card_head">
+              <div>
+                <h3 class="project_name">App Web</h3>
+                <p class="project_client">Client B</p>
+              </div>
+              <span class="chip">En pause</span>
             </div>
-            <p class="muted">Restantes : <strong>72h</strong></p>
-          </div>
 
-          <div class="project_stats">
-            <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
-            <div><strong>1</strong><span class="chip chip--soft-primary">En cours</span></div>
-            <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
-          </div>
-
-          <footer class="project_footer">
-            <div class="avatars">
-              <span class="avatar">A</span>
-              <span class="avatar">S</span>
-              <span class="avatar more">+1</span>
+            <div class="project_contract">
+              <p class="muted">Heures incluses : <strong>80h</strong></p>
+              <div class="progress">
+                <div class="bar" style="width: 10%;"></div>
+              </div>
+              <p class="muted">Restantes : <strong>72h</strong></p>
             </div>
-            <div class="icons">
-              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
-              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
-            </div>
-          </footer>
-        </article>
 
-        <article class="project_card card">
-          <div class="card_head">
-            <div>
-              <h3 class="project_name">Audit SEO</h3>
-              <p class="project_client">Client C</p>
+            <div class="project_stats">
+              <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
+              <div><strong>1</strong><span class="chip chip--soft-primary">En cours</span></div>
+              <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
             </div>
-            <span class="chip orange">Terminé</span>
-          </div>
 
-          <div class="project_contract">
-            <p class="muted">Heures incluses : <strong>20h</strong></p>
-            <div class="progress">
-              <div class="bar" style="width: 100%;"></div>
+            <footer class="project_footer">
+              <div class="avatars">
+                <span class="avatar">A</span>
+                <span class="avatar">S</span>
+                <span class="avatar more">+1</span>
+              </div>
+              <div class="icons">
+                <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+              </div>
+            </footer>
+          </article>
+
+          <article class="project_card card">
+            <div class="card_head">
+              <div>
+                <h3 class="project_name">Audit SEO</h3>
+                <p class="project_client">Client C</p>
+              </div>
+              <span class="chip chip--warning">Terminé</span>
             </div>
-            <p class="muted">Restantes : <strong>0h</strong></p>
-          </div>
 
-          <div class="project_stats">
-            <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
-            <div><strong>0</strong><span class="chip chip--soft-primary">En cours</span></div>
-            <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
-          </div>
-
-          <footer class="project_footer">
-            <div class="avatars">
-              <span class="avatar">K</span>
-              <span class="avatar">R</span>
+            <div class="project_contract">
+              <p class="muted">Heures incluses : <strong>20h</strong></p>
+              <div class="progress">
+                <div class="bar" style="width: 100%;"></div>
+              </div>
+              <p class="muted">Restantes : <strong>0h</strong></p>
             </div>
-            <div class="icons">
-              <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
-              <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
-            </div>
-          </footer>
-        </article>
 
+            <div class="project_stats">
+              <div><strong>0</strong><span class="chip chip--success">Ouverts</span></div>
+              <div><strong>0</strong><span class="chip chip--soft-primary">En cours</span></div>
+              <div><strong>0</strong><span class="chip chip--warning">À valider</span></div>
+            </div>
+
+            <footer class="project_footer">
+              <div class="avatars">
+                <span class="avatar">K</span>
+                <span class="avatar">R</span>
+              </div>
+              <div class="icons">
+                <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+              </div>
+            </footer>
+          </article>
+
+        </section>
       </section>
+
     </main>
 
   </div>
+
+  <!-- ✅ JS -->
+  <script src="projects.js"></script>
 </body>
 </html>

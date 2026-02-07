@@ -1,6 +1,6 @@
-/* =========================
-   TOKENS (Design system)
-   ========================= */
+/* =========================================================
+   1) TOKENS (Design system)
+   ========================================================= */
 :root{
   /* Colors */
   --bg: #f4f6f8;
@@ -44,9 +44,10 @@
   --ring: 0 0 0 3px rgba(59,130,246,0.15);
 }
 
-/* =========================
-   RESET + BASE
-   ========================= */
+
+/* =========================================================
+   2) RESET + BASE
+   ========================================================= */
 *{
   margin: 0;
   padding: 0;
@@ -59,12 +60,15 @@ body{
   background: var(--bg);
 }
 
+a{ color: inherit; }
+
 /* Helpers */
 .muted{ color: var(--muted); }
 
-/* =========================
-   UI COMPONENTS (Briques)
-   ========================= */
+
+/* =========================================================
+   3) UI COMPONENTS (réutilisables)
+   ========================================================= */
 
 /* Card */
 .card{
@@ -73,6 +77,32 @@ body{
   border-radius: var(--r-lg);
   padding: 16px;
   box-shadow: var(--shadow);
+}
+
+/* Head card (réutilisable) */
+.card_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card_title{
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.big{
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.small{
+  font-size: 13px;
+  color: var(--muted);
 }
 
 /* Button */
@@ -102,11 +132,10 @@ body{
 }
 
 .btn--ghost{
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.85);
-  color: #fff;
-  border-radius: var(--r-pill);
-  padding: 12px 28px;
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 /* Chip */
@@ -128,6 +157,9 @@ body{
 .chip--pri-high{ background: #fef2f2; color: #b91c1c; }
 
 .chip--tag-gray{ background: #f8fafc; color: #475569; }
+.chip--danger{ background:#fef2f2; color:#b91c1c; }
+.chip--info{ background: var(--primary-soft); color: var(--primary-text); }
+.chip--neutral{ background:#f3f4f6; color: var(--text-2); }
 
 /* Input / Select */
 .input,
@@ -137,7 +169,6 @@ body{
   border-radius: var(--r-md);
   border: 1px solid var(--border);
   background: var(--surface);
-  outline: none;
   font-size: 14px;
   color: var(--text-2);
   box-shadow: 0 10px 25px rgba(0,0,0,0.04);
@@ -149,9 +180,85 @@ body{
   box-shadow: var(--ring);
 }
 
-/* =========================
-   AUTH (login + inscription)
-   ========================= */
+/* Table (réutilisable) */
+.table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th{
+  text-align: left;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 900;
+  padding: 10px 10px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.table td{
+  padding: 12px 10px;
+  font-size: 13px;
+  color: var(--text-2);
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.table tr:nth-child(even) td{ 
+  background: #f8fafc;
+ }
+.table tr:hover td{ 
+  background: var(--primary-soft); }
+
+/* Avatars (réutilisable) */
+.avatars{ 
+  display: flex;
+  align-items: center;
+ }
+
+.avatar{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 12px;
+  border: 2px solid var(--surface);
+  margin-left: -8px;
+}
+
+/* Count badge (réutilisable) */
+.count{
+  min-width: 34px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+}
+
+.count--ok{
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: #d1fae5;
+}
+
+.count--warn{
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border-color: #fed7aa;
+}
+
+
+/* =========================================================
+   4) AUTH (login + inscription)
+   ========================================================= */
 body.auth{
   min-height: 100vh;
   display: flex;
@@ -159,7 +266,6 @@ body.auth{
   align-items: center;
 }
 
-/* container login */
 .body{
   width: min(900px, 92vw);
   height: 520px;
@@ -282,7 +388,6 @@ form{
   transform: translateY(-1px);
 }
 
-/* panneau droit login */
 .droite{
   flex: 1;
   background: linear-gradient(135deg, #4db6aa, #3b9ea6);
@@ -308,50 +413,19 @@ form{
   line-height: 1.4;
 }
 
-.droite button{
-  /* tu peux mettre: class="btn btn--ghost" dans le HTML plus tard */
-  margin-top: 10px;
-  padding: 12px 28px;
-  border-radius: var(--r-pill);
-  border: 2px solid rgba(255,255,255,0.85);
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.droite button:hover{
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-1px);
-}
-
 .oujus{ display: flex; justify-content: center; }
 
-@media (max-width: 780px){
-  .body{
-    height: auto;
-    flex-direction: column;
-  }
-  .gauche, .droite{
-    padding: 35px 25px;
-  }
-  .submit_button button{
-    width: 100%;
-  }
-}
 
-/* =========================
-   DASHBOARD (layout global)
-   ========================= */
+/* =========================================================
+   5) DASHBOARD LAYOUT GLOBAL (sidebar fixe + main scroll)
+   ========================================================= */
 body.dashboard{
-  min-height: 100vh;
-  background: var(--bg);
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Layout général */
 .layout{
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: var(--gap-4);
@@ -368,6 +442,11 @@ body.dashboard{
   display: flex;
   flex-direction: column;
   gap: var(--gap-4);
+
+  position: sticky;
+  top: var(--gap-4);
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: auto;
 }
 
 .logo h2{
@@ -377,18 +456,13 @@ body.dashboard{
   padding: 6px 8px;
 }
 
-/* menu */
+/* Menu */
 .menu ul,
 .settings ul{
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--gap-1);
-}
-
-.menu li{
-  border-radius: var(--r-md);
-  transition: 0.2s;
 }
 
 .menu li a,
@@ -401,120 +475,31 @@ body.dashboard{
   border-radius: var(--r-md);
 }
 
-.menu li:hover{
-  background: #f3f4f6;
-}
-
-.menu li.is-active{
-  background: var(--primary-soft);
-}
+.menu li:hover a{ background: #f3f4f6; }
 
 .menu li.is-active a{
+  background: var(--primary-soft);
   color: var(--primary-text);
   font-weight: 900;
 }
 
-/* settings en bas */
+/* Settings */
 .settings{ margin-top: auto; }
 .settings .danger a{ color: var(--danger); }
 
-/* Dashboard main zone */
-.main_bar{
-  padding-top: 12px;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: var(--gap-4);
-  align-items: start;
+/* Main scroll (la page scroll ici, pas le body) */
+.main_bar,
+.projects_main,
+.tickets_main{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
-/* Tickets cards (colonne gauche) */
-.task_overview{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap-3);
-}
 
-/* Contenu droite */
-.client_project{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap-3);
-}
-
-.customer{ grid-column: 1 / -1; }
-
-/* wrapper neutralisé */
-.client_project > .users,
-.client_project > .projects{
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-}
-
-/* Head cards */
-.card_head{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.card_title{
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 800;
-}
-
-.big{
-  font-size: 38px;
-  font-weight: 900;
-  margin-bottom: 6px;
-  color: var(--text);
-}
-
-.small{
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* Table clients */
-.customer table{
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 6px;
-}
-
-.customer th{
-  text-align: left;
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 900;
-  padding: 10px 10px;
-  border-bottom: 1px solid #edf1f5;
-}
-
-.customer td{
-  padding: 12px 10px;
-  font-size: 13px;
-  color: var(--text-2);
-  border-bottom: 1px solid #f0f3f7;
-}
-
-.customer tr:nth-child(even) td{ background: #f8fafc; }
-.customer tr:hover td{ background: var(--primary-soft); }
-
-/* Responsive dashboard */
-@media (max-width: 980px){
-  .layout{ grid-template-columns: 1fr; }
-  .main_bar{ grid-template-columns: 1fr; }
-  .task_overview{ grid-template-columns: 1fr; }
-  .client_project{ grid-template-columns: 1fr; }
-}
-
-/* =========================
-   PAGE HEAD + FILTERS (réutilisable)
-   ========================= */
+/* =========================================================
+   6) HEADERS + FILTERS (réutilisable)
+   ========================================================= */
 .page_head,
 .page_header{
   display: flex;
@@ -545,27 +530,61 @@ body.dashboard{
   margin-bottom: 14px;
 }
 
-@media (max-width: 980px){
-  .filters{ grid-template-columns: 1fr; }
+/* =========================================================
+   7) DASHBOARD (page dashboard.html)
+   ========================================================= */
+.main_bar{
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--gap-4);
+  align-items: start;
 }
 
-/* =========================
-   PROJETS
-   ========================= */
+.task_overview{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-3);
+}
+
+.client_project{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-3);
+}
+
+.customer{ grid-column: 1 / -1; }
+
+/* wrappers neutralisés */
+.client_project > .users,
+.client_project > .projects{
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* customer table utilise .table */
+.customer table{ width: 100%; border-collapse: collapse; }
+.customer table{ /* garde ton HTML sans changer */ }
+.customer th, .customer td{ /* fallback si tu ne mets pas class="table" */ }
+.customer th{ text-align:left; font-size:12px; color:var(--muted); font-weight:900; padding:10px; border-bottom:1px solid #edf1f5; }
+.customer td{ padding:12px 10px; font-size:13px; color:var(--text-2); border-bottom:1px solid #f0f3f7; }
+.customer tr:nth-child(even) td{ background:#f8fafc; }
+.customer tr:hover td{ background: var(--primary-soft); }
+
+/* =========================================================
+   8) PROJETS (projects.html)
+   ========================================================= */
 .projects_main{ padding-top: 6px; }
 
 .project_grid{
   display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--gap-3);
+  min-width: 0;
 }
 
-@media (max-width: 1100px){
-  .project_grid{ grid-template-columns: repeat(2, minmax(240px, 1fr)); }
-}
-@media (max-width: 980px){
-  .project_grid{ grid-template-columns: 1fr; }
-}
 
 .project_card{ padding: 18px; }
 
@@ -591,129 +610,13 @@ body.dashboard{
   border-radius: var(--r-pill);
 }
 
-/* =========================
-   TICKETS KANBAN
-   ========================= */
+
+/* =========================================================
+   9) TICKETS KANBAN (tickets.html)
+   ========================================================= */
 .tickets_main{ padding-top: 6px; }
 
-.board{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(280px, 1fr));
-  gap: var(--gap-3);
-  overflow-x: auto;
-  padding-bottom: 10px;
-}
-
-.column_head{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 0 4px;
-}
-
-.column_head h2{
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--text-2);
-  letter-spacing: 0.2px;
-}
-
-.count{
-  min-width: 34px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: var(--r-pill);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
-  background: #f3f4f6;
-  border: 1px solid var(--border);
-}
-
-.count--ok{ background: var(--success-bg); color: var(--success-text); border-color: #d1fae5; }
-.count--warn{ background: var(--warning-bg); color: var(--warning-text); border-color: #fed7aa; }
-
-.column_body{
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-2);
-}
-
-.ticket_top{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.ticket_title{
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--text);
-  line-height: 1.2;
-}
-
-.ticket_meta{
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--text-2);
-}
-
-.ticket_tags{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.ticket_footer{
-  margin-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* =========================
-   TICKETS KANBAN — IMPROVED UI
-   (sidebar fixed + topbar sticky + scroll clean)
-   ========================= */
-
-/* Layout: on enlève le scroll global sur la page */
-body.dashboard{
-  height: 100vh;
-  overflow: hidden; /* IMPORTANT : évite que la sidebar bouge */
-}
-
-/* La grille prend toute la hauteur */
-.layout{
-  height: 100vh;
-}
-
-/* Sidebar fixe (scroll interne si menu trop grand) */
-.left_bar{
-  position: sticky;
-  top: var(--gap-4);
-  height: calc(100vh - (var(--gap-4) * 2));
-  overflow: auto;
-}
-
-/* Zone main: scroll vertical uniquement ici */
-.tickets_main,
-.projects_main,
-.main_bar{
-  height: calc(100vh - (var(--gap-4) * 2));
-  overflow-y: auto;
-  padding-right: 6px; /* petit confort */
-}
-
-/* =========================
-   TOPBAR + SUBNAV (Kanban header)
-   ========================= */
+/* Topbar Kanban */
 .topbar{
   position: sticky;
   top: 0;
@@ -768,7 +671,6 @@ body.dashboard{
   font-size: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.04);
 }
-
 .topbar_center .search input:focus{
   border-color: #93c5fd;
   box-shadow: var(--ring);
@@ -792,15 +694,12 @@ body.dashboard{
   transition: 0.2s;
   font-weight: 900;
 }
-
-.icon_btn:hover{
-  transform: translateY(-1px);
-}
+.icon_btn:hover{ transform: translateY(-1px); }
 
 /* Subnav */
 .subnav{
   position: sticky;
-  top: 68px; /* sous la topbar */
+  top: 68px;
   z-index: 9;
   background: var(--bg);
   display: flex;
@@ -829,38 +728,19 @@ body.dashboard{
   color: var(--primary-text);
 }
 
-.btn--ghost{
-  background: var(--surface);
-  color: var(--text-2);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 10px 12px;
-  box-shadow: var(--shadow);
-}
-
-/* =========================
-   BOARD: pas de scroll horizontal global,
-   board prend la hauteur dispo,
-   colonnes scrollent à l'intérieur.
-   ========================= */
+/* Board */
 .board{
-  height: calc(100vh - 210px); 
-  /* 210px = topbar + subnav + marges (tu peux ajuster) */
-
+  height: calc(100vh - 210px);
   display: grid;
   grid-template-columns: repeat(4, minmax(260px, 1fr));
   gap: var(--gap-3);
-
-  overflow-x: auto;    /* si écran petit -> scroll horizontal OK */
-  overflow-y: hidden;  /* pas de scroll vertical du board */
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 10px;
 }
 
-/* Colonne style FourAxis */
-.column{
-  background: transparent;
-  min-height: 100%;
-}
+/* Colonne */
+.column{ background: transparent; min-height: 100%; }
 
 .column_head{
   padding: 0 6px;
@@ -882,147 +762,307 @@ body.dashboard{
   color: var(--text-2);
 }
 
-.column_actions{
-  display: flex;
-  gap: 8px;
-}
-
-/* Pastilles couleur comme l'exemple */
+/* Pastilles */
 .dot{
   width: 8px;
   height: 8px;
   border-radius: 999px;
 }
-
 .dot--new{ background: #60a5fa; }
 .dot--progress{ background: #a78bfa; }
 .dot--pending{ background: #fb923c; }
 .dot--done{ background: #34d399; }
 
-/* Fond léger des colonnes (comme le screenshot) */
+/* fonds colonnes */
 .column--new .column_body{ background: #f5faff; }
 .column--progress .column_body{ background: #faf5ff; }
 .column--pending .column_body{ background: #fff7ed; }
 .column--done .column_body{ background: #f0fdf4; }
 
-/* Corps colonne: carte container + scroll */
+/* contenu colonne */
 .column_body{
   border-radius: var(--r-lg);
   padding: 12px;
-
   display: flex;
   flex-direction: column;
   gap: var(--gap-2);
-
-  height: calc(100% - 42px); /* enlève la hauteur du head */
-  overflow-y: auto;          /* scroll vertical DANS la colonne */
+  height: calc(100% - 42px);
+  overflow-y: auto;
 }
 
-/* Carte ticket: plus compact + effet clean */
+/* Ticket */
 .ticket_card{
   padding: 14px;
   border-radius: var(--r-lg);
 }
 
-.ticket_desc{
-  margin-top: 8px;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.35;
+.ticket_top{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-/* Footer de ticket */
+.ticket_title{
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.ticket_meta{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.ticket_tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .ticket_footer{
   margin-top: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   font-size: 12px;
   color: var(--muted);
 }
 
-/* Avatars simples */
-.avatars{
+/* =========================
+   MODAL (popup)
+   ========================= */
+.hidden{ display: none; }
+
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.modal_backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(17,24,39,0.45);
+}
+
+.modal_content{
+  position: relative;
+  width: min(520px, 92vw);
+  margin: 80px auto;
+  padding: 16px;
+}
+
+.modal_head{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.avatar{
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--primary-text);
+.modal_head h2{
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.modal_form{
   display: grid;
-  place-items: center;
-  font-weight: 900;
+  gap: 12px;
+}
+
+.modal_form label{
+  display: block;
   font-size: 12px;
-  border: 2px solid var(--surface);
-  margin-left: -8px;
-}
-.avatar:first-child{ margin-left: 0; }
-
-/* Counts */
-.count{
-  min-width: 34px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: var(--r-pill);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
-  background: #f3f4f6;
-  border: 1px solid var(--border);
+  font-weight: 800;
+  color: var(--muted);
+  margin-bottom: 6px;
 }
 
-.count--ok{
-  background: var(--success-bg);
-  color: var(--success-text);
-  border-color: #d1fae5;
-}
-.count--warn{
-  background: var(--warning-bg);
-  color: var(--warning-text);
-  border-color: #fed7aa;
+.modal_actions{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
 }
 
-/* Chips supplémentaires (si tu veux)
-   ex: chip--danger, chip--info, chip--neutral */
-.chip--danger{ background:#fef2f2; color:#b91c1c; }
-.chip--info{ background: var(--primary-soft); color: var(--primary-text); }
-.chip--neutral{ background:#f3f4f6; color: var(--text-2); }
+/* =========================
+   MOBILE PROJECTS (burger + sidebar drawer)
+   ========================= */
 
-/* Responsive */
-@media (max-width: 980px){
-  body.dashboard{
-    overflow: auto; /* sur mobile on remet simple */
-  }
+/* caché sur desktop */
+.nav_toggle,
+.nav_overlay,
+.mobile_topbar{
+  display: none;
+}
+
+@media (max-width: 600px){
+
+  /* Layout: 1 colonne */
   .layout{
-    height: auto;
     grid-template-columns: 1fr;
   }
+
+  /* Topbar mobile visible */
+  .mobile_topbar{
+    display: grid;
+    grid-template-columns: 44px 1fr 56px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* On cache le header desktop */
+  .page_header{
+    display: none;
+  }
+
+  .burger_btn{
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    user-select: none;
+    font-weight: 900;
+    color: var(--text-2);
+  }
+
+  .mobile_titles{
+    min-width: 0;
+  }
+
+  .mobile_title{
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .mobile_subtitle{
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .mobile_plus{
+    justify-self: end;
+    padding: 10px 14px;
+    border-radius: var(--r-md);
+  }
+
+  /* Filters: sur mobile => tout en colonne */
+  .filters{
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar devient un drawer */
   .left_bar{
-    position: relative;
-    height: auto;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    bottom: 14px;
+    width: min(82vw, 320px);
+    z-index: 50;
+
+    transform: translateX(calc(-100% - 18px));
+    transition: transform 0.25s ease;
+
+    overflow: auto;
   }
-  .tickets_main{
-    height: auto;
-    overflow: visible;
+
+  /* Overlay */
+  .nav_overlay{
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 40;
+    transition: opacity 0.25s ease;
   }
-  .topbar{
+
+  /* Toggle ON => ouvre le drawer + overlay */
+  .nav_toggle:checked ~ .layout .left_bar{
+    transform: translateX(0);
+  }
+
+  .nav_toggle:checked ~ .nav_overlay{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Grid projets: 1 colonne */
+  .project_grid{
     grid-template-columns: 1fr;
   }
-  .subnav{
-    top: 0;
-    position: relative;
+
+  /* Petits ajustements visuels */
+  .project_card{
+    padding: 16px;
   }
-  .board{
-    height: auto;
-  }
-  .column_body{
-    height: auto;
-    overflow: visible;
-  }
+}
+
+/* ✅ La page projets ne scroll pas horizontalement */
+.projects_main{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: hidden;            /* IMPORTANT : on bloque le scroll ici */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+}
+
+/* ✅ Optionnel : header sticky (si tu veux qu’il reste visible même quand tu scroll la liste) */
+.page_header{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  padding-top: 6px;
+}
+
+/* ✅ Filtres sticky juste sous le header */
+.filters{
+  position: sticky;
+  top: 86px;                   /* ajuste selon la hauteur de ton header */
+  z-index: 4;
+  background: var(--bg);
+  padding-bottom: 10px;
+}
+
+/* ✅ La zone qui scrolle (UNIQUEMENT la liste des projets) */
+.projects_scroll{
+  flex: 1;                      /* prend tout l’espace restant */
+  overflow-y: auto;             /* scroll vertical ici */
+  overflow-x: hidden;           /* pas de scroll horizontal */
+  padding-right: 6px;
+  min-height: 0;                /* CRUCIAL pour flex + overflow */
+}
+
+/* ✅ Grille qui “wrap” et évite scroll horizontal */
+.project_grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap-3);
+  min-width: 0;
+}
+
+/* ✅ Empêche les champs/éléments de grid de forcer un débordement */
+.filters, .filter, .input, .select, .project_card{
+  min-width: 0;
+}
+
+/* ✅ Stop scroll horizontal global (au cas où) */
+body, .layout{
+  overflow-x: hidden;
 }
