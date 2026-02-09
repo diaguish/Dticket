@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Détail ticket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard ticket-detail-page">
+  <div class="layout">
+
+    <!-- SIDEBAR (inchangée) -->
+    <aside class="left_bar" aria-label="Menu latéral">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li class="is-active"><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="ticket_detail_main">
+
+      <!-- HEADER (sans bouton retour) -->
+      <header class="ticket_detail_header">
+        <div class="ticket_detail_titles">
+          <h1 class="ticket_detail_title">Bug connexion</h1>
+          <p class="ticket_detail_subtitle muted">Projet : <strong>Refonte Site Web</strong> • Client A</p>
+
+          <div class="ticket_detail_chips" aria-label="Badges ticket">
+            <span class="chip chip--danger">Urgent</span>
+            <span class="chip chip--info">Inclus</span>
+            <span class="chip chip--neutral">UI</span>
+          </div>
+        </div>
+
+        <div class="ticket_detail_actions">
+          <button class="btn btn--ghost" type="button">Modifier</button>
+          <a class="btn btn--ghost" href="tickets.html">Fermer</a>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="ticket_detail_layout" aria-label="Détail du ticket">
+
+        <!-- COLONNE GAUCHE -->
+        <div class="ticket_detail_left">
+
+          <!-- Description -->
+          <article class="card">
+            <div class="card_head">
+              <p class="card_title">Description</p>
+            </div>
+
+            <p class="ticket_desc_text">
+              Erreur lors de la connexion (redirection infinie). Le problème apparaît surtout sur mobile après
+              une expiration de session.
+            </p>
+
+            <div class="ticket_desc_meta">
+              <div><span class="muted">Créé le :</span> <strong>12 Feb</strong></div>
+              <div><span class="muted">Assigné :</span> <strong>D, M</strong></div>
+            </div>
+          </article>
+
+          <!-- Checklist -->
+          <article class="card">
+            <div class="card_head">
+              <p class="card_title">Checklist</p>
+              <span class="count">3</span>
+            </div>
+
+            <ul class="checklist">
+              <li class="check_item">
+                <label><input type="checkbox" /> Reproduire le bug (mobile + desktop)</label>
+              </li>
+              <li class="check_item">
+                <label><input type="checkbox" checked /> Identifier la route qui boucle</label>
+              </li>
+              <li class="check_item">
+                <label><input type="checkbox" /> Corriger + tester (JWT / refresh)</label>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Commentaires -->
+          <article class="card" id="commentForm">
+            <div class="card_head">
+              <p class="card_title">Ajouter un commentaire</p>
+            </div>
+
+            <form class="comment_form">
+              <textarea class="input comment_input" rows="4" placeholder="Écrire un commentaire..."></textarea>
+              <div class="comment_actions">
+                <button class="btn btn--primary" type="submit">Envoyer</button>
+              </div>
+            </form>
+          </article>
+        </div>
+
+        <!-- COLONNE DROITE -->
+        <aside class="ticket_detail_right">
+
+          <!-- Infos -->
+          <article class="card">
+            <div class="card_head">
+              <p class="card_title">Informations</p>
+            </div>
+
+            <ul class="detail_list">
+              <li><span class="muted">Statut</span><strong> Nouveau</strong></li>
+              <li><span class="muted">Priorité</span><strong> Urgent</strong></li>
+              <li><span class="muted">Type</span><strong> Inclus</strong></li>
+              <li><span class="muted">Projet</span><strong> Refonte Site Web</strong></li>
+              <li><span class="muted">Client</span><strong> Client A</strong></li>
+            </ul>
+          </article>
+
+          <!-- Historique -->
+          <article class="card">
+            <div class="card_head">
+              <p class="card_title">Historique</p>
+            </div>
+
+            <ul class="history_list">
+              <li><span class="muted">12 Feb</span> • Création du ticket</li>
+              <li><span class="muted">12 Feb</span> • Assigné à D, M</li>
+              <li><span class="muted">12 Feb</span> • Commentaire ajouté</li>
+            </ul>
+          </article>
+
+           <article class="card">
+            <div class="card_head">
+              <p class="card_title">Commentaires</p>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline_item">
+                <div class="timeline_avatar">D</div>
+                <div class="timeline_content">
+                  <div class="timeline_top">
+                    <strong>David</strong>
+                    <span class="muted">• 12 Feb — 10:42</span>
+                  </div>
+                  <p>J’ai reproduit sur iPhone. Ça boucle quand le token expire.</p>
+                </div>
+              </div>
+
+              <div class="timeline_item">
+                <div class="timeline_avatar">M</div>
+                <div class="timeline_content">
+                  <div class="timeline_top">
+                    <strong>Marie</strong>
+                    <span class="muted">• 12 Feb — 11:05</span>
+                  </div>
+                  <p>J’ai checké le middleware, il redirige vers /login mais re-passe par /auth.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </aside>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Petit bonus : clique "Ajouter un commentaire" => focus textarea -->
+  <script>
+    const btn = document.getElementById("goToComment");
+    btn?.addEventListener("click", () => {
+      setTimeout(() => {
+        document.querySelector(".comment_input")?.focus();
+      }, 0);
+    });
+  </script>
+</body>
+</html>
