@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Clients</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard clients-page">
+
+  <!-- Toggle (CSS only) pour mobile (drawer sidebar) -->
+  <input type="checkbox" id="navToggle" class="nav_toggle" />
+  <label for="navToggle" class="nav_overlay" aria-hidden="true"></label>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="left_bar" aria-label="Menu latéral">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li class="is-active"><a href="clients.html">Clients</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="clients_main" aria-label="Page clients">
+
+      <!-- TOPBAR MOBILE (optionnel, si tu veux le burger comme Projects) -->
+      <header class="mobile_topbar" aria-label="Topbar mobile">
+        <label for="navToggle" class="burger_btn" aria-label="Ouvrir le menu">☰</label>
+
+        <div class="mobile_titles">
+          <h1 class="mobile_title">Clients</h1>
+          <p class="mobile_subtitle">Gérer vos clients</p>
+        </div>
+
+        <button class="btn btn--primary mobile_plus" type="button" id="openCreateClientMobile" aria-label="Nouveau client">＋</button>
+      </header>
+
+      <!-- HEADER DESKTOP (caché en mobile via CSS si tu reprends ton système) -->
+      <header class="page_header" aria-label="Header clients">
+        <div class="page_title">
+          <h1>Clients</h1>
+          <p>Gérez vos clients et leurs demandes</p>
+        </div>
+
+        <div class="page_actions">
+          <button class="btn btn--primary" type="button" id="openCreateClient">+ Nouveau client</button>
+        </div>
+      </header>
+
+      <!-- SEARCH (reste fixe, ne scrolle pas) -->
+      <section class="clients_toolbar" aria-label="Recherche clients">
+        <div class="filter search">
+          <input class="input" id="clientSearch" type="text" placeholder="Rechercher un client..." />
+        </div>
+      </section>
+
+      <!-- STATS (ne scrollent pas) -->
+      <section class="clients_stats" aria-label="Statistiques clients">
+        <article class="card">
+          <div class="card_head">
+            <p class="card_title">Total clients</p>
+            <span class="chip chip--soft-primary">Global</span>
+          </div>
+          <div class="big" id="statTotalClients">12</div>
+          <p class="small">Clients enregistrés</p>
+        </article>
+
+        <article class="card">
+          <div class="card_head">
+            <p class="card_title">Demandes en attente</p>
+            <span class="chip chip--warning">À traiter</span>
+          </div>
+          <div class="big" id="statPendingRequests">4</div>
+          <p class="small">Demandes clients non traitées</p>
+        </article>
+
+        <article class="card">
+          <div class="card_head">
+            <p class="card_title">Clients actifs</p>
+            <span class="chip chip--success">OK</span>
+          </div>
+          <div class="big" id="statActiveClients">9</div>
+          <p class="small">Clients avec projets en cours</p>
+        </article>
+      </section>
+
+      <!-- ✅ SEULE LA LISTE SCROLLE -->
+      <section class="clients_list_scroll" aria-label="Liste clients scroll">
+        <section class="card clients_table" aria-label="Liste des clients">
+          <div class="card_head">
+            <p class="card_title">Liste des clients</p>
+            <span class="chip">Dernières infos</span>
+          </div>
+
+          <table class="table" aria-label="Table clients">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Dernier contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="clientsTbody">
+              <tr>
+                <td><strong>Client A</strong></td>
+                <td>clienta@mail.com</td>
+                <td>06 12 34 56 78</td>
+                <td>12 Feb</td>
+                <td>
+                  <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                  <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Client B</strong></td>
+                <td>clientb@mail.com</td>
+                <td>06 98 76 54 32</td>
+                <td>10 Feb</td>
+                <td>
+                  <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                  <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Client C</strong></td>
+                <td>clientc@mail.com</td>
+                <td>07 11 22 33 44</td>
+                <td>08 Feb</td>
+                <td>
+                  <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+                  <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- ✅ MODAL : Création client -->
+  <div class="modal hidden" id="clientModal" aria-hidden="true">
+    <div class="modal_backdrop" id="closeClientBackdrop"></div>
+
+    <div class="modal_content card" role="dialog" aria-modal="true" aria-labelledby="clientModalTitle">
+      <header class="modal_head">
+        <h2 id="clientModalTitle">Créer un client</h2>
+        <button class="icon_btn" type="button" id="closeClientBtn" aria-label="Fermer">✕</button>
+      </header>
+
+      <form id="createClientForm" class="modal_form">
+        <div class="field">
+          <label for="clientName">Nom du client</label>
+          <input class="input" id="clientName" type="text" placeholder="Ex: Client D" required />
+        </div>
+
+        <div class="field">
+          <label for="clientEmail">Email</label>
+          <input class="input" id="clientEmail" type="email" placeholder="Ex: clientd@mail.com" required />
+        </div>
+
+        <div class="field">
+          <label for="clientPhone">Téléphone</label>
+          <input class="input" id="clientPhone" type="tel" placeholder="Ex: 06 00 00 00 00" required />
+        </div>
+
+        <div class="field">
+          <label for="clientPending">Demandes en attente</label>
+          <select class="select" id="clientPending" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="modal_actions">
+          <button class="btn btn--ghost" type="button" id="cancelClientCreate">Annuler</button>
+          <button class="btn btn--primary" type="submit">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="clients.js"></script>
+</body>
+</html>

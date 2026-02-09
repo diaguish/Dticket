@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Paramètres</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard settings-page">
+
+  <!-- Toggle (CSS only) pour le menu mobile -->
+  <input type="checkbox" id="navToggle" class="nav_toggle" />
+  <label for="navToggle" class="nav_overlay" aria-hidden="true"></label>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="left_bar" aria-label="Menu latéral">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li class="is-active"><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="settings_main">
+
+      <!-- TOPBAR MOBILE -->
+      <header class="mobile_topbar" aria-label="Topbar mobile">
+        <label for="navToggle" class="burger_btn" aria-label="Ouvrir le menu">☰</label>
+
+        <div class="mobile_titles">
+          <h1 class="mobile_title">Paramètres</h1>
+          <p class="mobile_subtitle">Compte & préférences</p>
+        </div>
+
+        <span></span>
+      </header>
+
+      <!-- HEADER DESKTOP -->
+      <header class="page_header">
+        <div class="page_title">
+          <h1>Paramètres</h1>
+          <p>Gérez les préférences et configurations du compte</p>
+        </div>
+      </header>
+
+      <!-- ✅ Zone scroll : SEULE la partie contenu scroll -->
+      <section class="settings_scroll" aria-label="Contenu paramètres">
+
+        <!-- Bloc : Informations générales -->
+        <section class="card settings_section" aria-label="Informations générales">
+          <div class="settings_section_head">
+            <div>
+              <h2 class="settings_h2">Informations générales</h2>
+              <p class="muted">Mettez à jour vos informations de base.</p>
+            </div>
+
+            <div class="settings_avatar">
+              <div class="avatar_big" aria-hidden="true">D</div>
+              <button class="btn btn--ghost" type="button">Modifier la photo</button>
+            </div>
+          </div>
+
+          <div class="settings_form_grid">
+            <div class="field">
+              <label for="fullName" class="label">Nom complet</label>
+              <input class="input" id="fullName" type="text" placeholder="Ex: David Martin" value="David Martin" />
+            </div>
+
+            <div class="field">
+              <label for="email" class="label">Adresse email</label>
+              <input class="input" id="email" type="email" placeholder="Ex: david@dticket.com" value="david@dticket.com" />
+            </div>
+          </div>
+
+          <div class="settings_inline_actions">
+            <button class="btn btn--primary" id="openCredsModal" type="button">
+              Changement d’identifiants
+            </button>
+          </div>
+        </section>
+
+        <!-- Bloc : Préférences -->
+        <section class="card settings_section" aria-label="Préférences">
+          <div class="settings_section_head_simple">
+            <div>
+              <h2 class="settings_h2">Préférences</h2>
+              <p class="muted">Personnalisez votre expérience.</p>
+            </div>
+          </div>
+
+          <div class="settings_toggles">
+            <div class="toggle_row">
+              <div class="toggle_texts">
+                <strong>Mode sombre</strong>
+                <span class="muted">Active une interface plus sombre.</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="darkModeToggle" />
+                <span class="slider" aria-hidden="true"></span>
+              </label>
+            </div>
+
+            <div class="toggle_row">
+              <div class="toggle_texts">
+                <strong>Notifications par email</strong>
+                <span class="muted">Recevoir un email lors d’un nouveau ticket.</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="emailNotifToggle" checked />
+                <span class="slider" aria-hidden="true"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- ✅ MODAL : Changement d’identifiants -->
+  <div class="modal hidden" id="credsModal" aria-hidden="true">
+    <div class="modal_backdrop" id="closeCredsBackdrop"></div>
+
+    <div class="modal_content card" role="dialog" aria-modal="true" aria-labelledby="credsTitle">
+      <header class="modal_head">
+        <h2 id="credsTitle">Changement d’identifiants</h2>
+        <button class="icon_btn" type="button" id="closeCredsBtn" aria-label="Fermer">✕</button>
+      </header>
+
+      <form id="credsForm" class="modal_form">
+        <div class="field">
+          <label for="newEmail">Nouvel email</label>
+          <input class="input" id="newEmail" type="email" placeholder="Ex: nouveau@dticket.com" />
+        </div>
+
+        <div class="field">
+          <label for="newPassword">Nouveau mot de passe</label>
+          <input class="input" id="newPassword" type="password" placeholder="••••••••" />
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirmer mot de passe</label>
+          <input class="input" id="confirmPassword" type="password" placeholder="••••••••" />
+        </div>
+
+        <p class="muted" id="credsError" style="display:none; color:#b91c1c; font-weight:800;">
+          Erreur
+        </p>
+
+        <div class="modal_actions">
+          <button class="btn btn--ghost" type="button" id="cancelCreds">Annuler</button>
+          <button class="btn btn--primary" type="submit">Modifier</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

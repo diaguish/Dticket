@@ -8,10 +8,16 @@
 </head>
 
 <body class="dashboard tickets-page">
+
+  <!-- Toggle (CSS only) -->
+  <input type="checkbox" id="navToggle" class="nav_toggle" />
+  <!-- Overlay (clique dessus = ferme) -->
+  <label for="navToggle" class="nav_overlay" aria-hidden="true"></label>
+
   <div class="layout">
 
     <!-- SIDEBAR -->
-    <aside class="left_bar">
+    <aside class="left_bar" aria-label="Menu latéral">
       <div class="logo">
         <h2>Dticket</h2>
       </div>
@@ -40,7 +46,12 @@
       <!-- TOPBAR -->
       <header class="topbar">
         <div class="topbar_left">
-          <a class="back_link" href="projects.html" aria-label="Retour projets">←</a>
+          <!-- burger mobile -->
+          <label for="navToggle" class="burger_btn" aria-label="Ouvrir le menu">☰</label>
+
+          <!-- back desktop -->
+          <a class="back_link back_desktop" href="projects.html" aria-label="Retour projets">←</a>
+
           <div class="topbar_titles">
             <p class="topbar_kicker">Projects</p>
             <h1 class="topbar_title">Tickets</h1>
@@ -54,7 +65,6 @@
         </div>
 
         <div class="topbar_right">
-          <!-- ✅ bouton qui ouvre le modal -->
           <a class="btn btn--primary" href="#" id="openCreateTicket">+ Create</a>
           <button class="icon_btn" type="button" aria-label="Notifications">🔔</button>
         </div>
@@ -70,299 +80,304 @@
         </div>
       </nav>
 
-      <!-- BOARD -->
-      <section class="board" aria-label="Board tickets">
+      <!-- ✅ SCROLL ZONE : seul le board scrolle -->
+      <section class="tickets_scroll" aria-label="Zone scroll tickets">
 
-        <!-- COLONNE 1 -->
-        <section class="column column--new" aria-label="Nouveau">
-          <header class="column_head">
-            <div class="column_title">
-              <span class="dot dot--new" aria-hidden="true"></span>
-              <h2>Nouveau</h2>
-              <span class="count">3</span>
+        <!-- BOARD -->
+        <section class="board" aria-label="Board tickets">
+
+          <!-- COLONNE 1 -->
+          <section class="column column--new" aria-label="Nouveau">
+            <header class="column_head">
+              <div class="column_title">
+                <span class="dot dot--new" aria-hidden="true"></span>
+                <h2>Nouveau</h2>
+                <span class="count">3</span>
+              </div>
+
+              <div class="column_actions">
+                <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
+                <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
+              </div>
+            </header>
+
+            <!-- id pour JS -->
+            <div class="column_body" id="colNew">
+
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--danger">Urgent</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Bug connexion</h3>
+                <p class="ticket_desc">Erreur lors de la connexion (redirection infinie).</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--info">Inclus</span>
+                  <span class="chip chip--neutral">UI</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">D</span>
+                    <span class="avatar">M</span>
+                  </div>
+                </footer>
+              </article>
+
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--warning">Medium</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Demande ajout page FAQ</h3>
+                <p class="ticket_desc">Ajouter une page FAQ + liens depuis le footer.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--info">Inclus</span>
+                  <span class="chip chip--neutral">Contenu</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">J</span>
+                  </div>
+                </footer>
+              </article>
+
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--neutral">Low</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Problème d’accès admin</h3>
+                <p class="ticket_desc">Accès admin bloqué sur certains comptes.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>App Mobile</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--warning">Facturable</span>
+                  <span class="chip chip--neutral">Back</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">S</span>
+                  </div>
+                </footer>
+              </article>
+
             </div>
+          </section>
 
-            <div class="column_actions">
-              <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
-              <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
+          <!-- COLONNE 2 -->
+          <section class="column column--progress" aria-label="En cours">
+            <header class="column_head">
+              <div class="column_title">
+                <span class="dot dot--progress" aria-hidden="true"></span>
+                <h2>En cours</h2>
+                <span class="count">2</span>
+              </div>
+
+              <div class="column_actions">
+                <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
+                <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
+              </div>
+            </header>
+
+            <div class="column_body">
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--neutral">Low</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Optimiser performance page accueil</h3>
+                <p class="ticket_desc">Améliorer LCP et réduire les scripts inutiles.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Audit SEO</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--info">Inclus</span>
+                  <span class="chip chip--neutral">Perf</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">D</span>
+                  </div>
+                </footer>
+              </article>
+
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--danger">Urgent</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Correctif responsive mobile</h3>
+                <p class="ticket_desc">Fix menu + padding sur petits écrans.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--warning">Facturable</span>
+                  <span class="chip chip--neutral">CSS</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">M</span>
+                  </div>
+                </footer>
+              </article>
             </div>
-          </header>
+          </section>
 
-          <!-- ✅ id pour que le JS ajoute ici -->
-          <div class="column_body" id="colNew">
-
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--danger">Urgent</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Bug connexion</h3>
-              <p class="ticket_desc">Erreur lors de la connexion (redirection infinie).</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
+          <!-- COLONNE 3 -->
+          <section class="column column--pending" aria-label="À valider">
+            <header class="column_head">
+              <div class="column_title">
+                <span class="dot dot--pending" aria-hidden="true"></span>
+                <h2>À valider</h2>
+                <span class="count count--warn">1</span>
               </div>
 
-              <div class="ticket_tags">
-                <span class="chip chip--info">Inclus</span>
-                <span class="chip chip--neutral">UI</span>
+              <div class="column_actions">
+                <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
+                <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
               </div>
+            </header>
 
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">D</span>
-                  <span class="avatar">M</span>
+            <div class="column_body">
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--warning">Medium</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Mise à jour contenu landing</h3>
+                <p class="ticket_desc">Client demande une version plus courte + CTA.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
                 </div>
-              </footer>
-            </article>
 
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--warning">Medium</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Demande ajout page FAQ</h3>
-              <p class="ticket_desc">Ajouter une page FAQ + liens depuis le footer.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--info">Inclus</span>
-                <span class="chip chip--neutral">Contenu</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">J</span>
+                <div class="ticket_tags">
+                  <span class="chip chip--warning">Facturable</span>
+                  <span class="chip chip--neutral">Contenu</span>
                 </div>
-              </footer>
-            </article>
 
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--neutral">Low</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">J</span>
+                  </div>
+                </footer>
+              </article>
+            </div>
+          </section>
 
-              <h3 class="ticket_title">Problème d’accès admin</h3>
-              <p class="ticket_desc">Accès admin bloqué sur certains comptes.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>App Mobile</strong>
+          <!-- COLONNE 4 -->
+          <section class="column column--done" aria-label="Terminé">
+            <header class="column_head">
+              <div class="column_title">
+                <span class="dot dot--done" aria-hidden="true"></span>
+                <h2>Terminé</h2>
+                <span class="count count--ok">2</span>
               </div>
 
-              <div class="ticket_tags">
-                <span class="chip chip--warning">Facturable</span>
-                <span class="chip chip--neutral">Back</span>
+              <div class="column_actions">
+                <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
+                <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
               </div>
+            </header>
 
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">S</span>
+            <div class="column_body">
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--neutral">Low</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Création formulaire contact</h3>
+                <p class="ticket_desc">Form + validation + page de confirmation.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
                 </div>
-              </footer>
-            </article>
 
-          </div>
+                <div class="ticket_tags">
+                  <span class="chip chip--info">Inclus</span>
+                  <span class="chip chip--neutral">Front</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">D</span>
+                    <span class="avatar">M</span>
+                  </div>
+                </footer>
+              </article>
+
+              <article class="ticket_card card">
+                <header class="ticket_top">
+                  <span class="chip chip--neutral">Low</span>
+                  <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
+                </header>
+
+                <h3 class="ticket_title">Correction typo header</h3>
+                <p class="ticket_desc">Petite correction sur le libellé du menu.</p>
+
+                <div class="ticket_meta">
+                  <span class="muted">Projet :</span> <strong>Audit SEO</strong>
+                </div>
+
+                <div class="ticket_tags">
+                  <span class="chip chip--info">Inclus</span>
+                  <span class="chip chip--neutral">UI</span>
+                </div>
+
+                <footer class="ticket_footer">
+                  <span class="muted">📅 12 Feb</span>
+                  <div class="avatars">
+                    <span class="avatar">M</span>
+                  </div>
+                </footer>
+              </article>
+            </div>
+          </section>
+
         </section>
-
-        <!-- COLONNE 2 -->
-        <section class="column column--progress" aria-label="En cours">
-          <header class="column_head">
-            <div class="column_title">
-              <span class="dot dot--progress" aria-hidden="true"></span>
-              <h2>En cours</h2>
-              <span class="count">2</span>
-            </div>
-
-            <div class="column_actions">
-              <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
-              <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
-            </div>
-          </header>
-
-          <div class="column_body">
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--neutral">Low</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Optimiser performance page accueil</h3>
-              <p class="ticket_desc">Améliorer LCP et réduire les scripts inutiles.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Audit SEO</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--info">Inclus</span>
-                <span class="chip chip--neutral">Perf</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">D</span>
-                </div>
-              </footer>
-            </article>
-
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--danger">Urgent</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Correctif responsive mobile</h3>
-              <p class="ticket_desc">Fix menu + padding sur petits écrans.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--warning">Facturable</span>
-                <span class="chip chip--neutral">CSS</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">M</span>
-                </div>
-              </footer>
-            </article>
-          </div>
-        </section>
-
-        <!-- COLONNE 3 -->
-        <section class="column column--pending" aria-label="À valider">
-          <header class="column_head">
-            <div class="column_title">
-              <span class="dot dot--pending" aria-hidden="true"></span>
-              <h2>À valider</h2>
-              <span class="count count--warn">1</span>
-            </div>
-
-            <div class="column_actions">
-              <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
-              <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
-            </div>
-          </header>
-
-          <div class="column_body">
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--warning">Medium</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Mise à jour contenu landing</h3>
-              <p class="ticket_desc">Client demande une version plus courte + CTA.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--warning">Facturable</span>
-                <span class="chip chip--neutral">Contenu</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">J</span>
-                </div>
-              </footer>
-            </article>
-          </div>
-        </section>
-
-        <!-- COLONNE 4 -->
-        <section class="column column--done" aria-label="Terminé">
-          <header class="column_head">
-            <div class="column_title">
-              <span class="dot dot--done" aria-hidden="true"></span>
-              <h2>Terminé</h2>
-              <span class="count count--ok">2</span>
-            </div>
-
-            <div class="column_actions">
-              <button class="icon_btn" type="button" aria-label="Options colonne">⋯</button>
-              <button class="icon_btn" type="button" aria-label="Ajouter ticket">＋</button>
-            </div>
-          </header>
-
-          <div class="column_body">
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--neutral">Low</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Création formulaire contact</h3>
-              <p class="ticket_desc">Form + validation + page de confirmation.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Refonte Site Web</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--info">Inclus</span>
-                <span class="chip chip--neutral">Front</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">D</span>
-                  <span class="avatar">M</span>
-                </div>
-              </footer>
-            </article>
-
-            <article class="ticket_card card">
-              <header class="ticket_top">
-                <span class="chip chip--neutral">Low</span>
-                <button class="icon_btn" type="button" aria-label="Options ticket">⋮</button>
-              </header>
-
-              <h3 class="ticket_title">Correction typo header</h3>
-              <p class="ticket_desc">Petite correction sur le libellé du menu.</p>
-
-              <div class="ticket_meta">
-                <span class="muted">Projet :</span> <strong>Audit SEO</strong>
-              </div>
-
-              <div class="ticket_tags">
-                <span class="chip chip--info">Inclus</span>
-                <span class="chip chip--neutral">UI</span>
-              </div>
-
-              <footer class="ticket_footer">
-                <span class="muted">📅 12 Feb</span>
-                <div class="avatars">
-                  <span class="avatar">M</span>
-                </div>
-              </footer>
-            </article>
-          </div>
-        </section>
-
       </section>
+
     </main>
   </div>
 
-  <!-- ✅ MODAL (POP-UP) placé dans le body, à la fin -->
+  <!-- MODAL -->
   <div class="modal hidden" id="ticketModal" aria-hidden="true">
     <div class="modal_backdrop" id="closeModalBackdrop"></div>
 
@@ -413,7 +428,6 @@
     </div>
   </div>
 
-  <!-- ✅ JS en dernier -->
   <script src="tickets.js"></script>
 </body>
 </html>

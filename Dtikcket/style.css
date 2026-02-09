@@ -1066,3 +1066,292 @@ body.dashboard{
 body, .layout{
   overflow-x: hidden;
 }
+/* ✅ Stats projets en horizontal (chips + nombres) */
+.project_stats{
+  display: flex;
+  flex-wrap: wrap;      /* si ça déborde -> passe à la ligne */
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.project_stats .stat{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--r-pill);
+  background: #f8fafc;              /* léger fond, optionnel */
+  border: 1px solid var(--border);  /* optionnel */
+}
+
+.project_stats .stat strong{
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* option: chips un peu plus “aérées” */
+.chip{
+  line-height: 1;   /* évite l’effet collé vertical */
+  white-space: nowrap;
+}
+
+/* =========================================================
+   CLIENTS (scroll uniquement sur la liste)
+   ========================================================= */
+.clients_main{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: hidden;         /* bloque le scroll global */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+  padding-top: 6px;
+}
+
+/* Search reste fixe */
+.clients_toolbar{
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: var(--bg);
+  padding: 6px 0 10px;
+}
+
+/* Stats ne scrollent pas */
+.clients_stats{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: var(--gap-3);
+  min-width: 0;
+}
+
+/* ✅ SEULE la liste scrolle */
+.clients_list_scroll{
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  min-height: 0;            /* ultra important en flex */
+}
+
+/* Table card */
+.clients_table{
+  overflow: hidden;         /* garde les coins arrondis clean */
+}
+
+/* Empêche débordement horizontal */
+.table, .table th, .table td,
+.clients_table, .clients_list_scroll{
+  min-width: 0;
+}
+
+.table td:last-child{
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 600px){
+  .clients_stats{
+    grid-template-columns: 1fr;
+  }
+
+  /* sur mobile la table peut scroller horizontalement */
+  .clients_table{
+    overflow-x: auto;
+  }
+  .clients_table .table{
+    min-width: 680px;
+  }
+}
+/* =========================
+   SETTINGS (settings.html)
+   ========================= */
+
+/* même logique que projets: pas de scroll global, seulement une zone */
+.settings_main{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+  padding-top: 6px;
+}
+
+/* header en haut (reste visible) */
+.settings-page .page_header{
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--bg);
+  padding-top: 6px;
+}
+
+/* zone scroll */
+.settings_scroll{
+  display: grid;
+  gap: var(--gap-3);
+}
+
+
+/* footer actions en bas */
+.settings_actions{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 2px;
+}
+
+/* Sections */
+.settings_section{
+  display: grid;
+  gap: 14px;
+}
+
+.settings_section_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.settings_section_head_simple{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.settings_h2{
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.settings_avatar{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar_big{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  border: 2px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* Form grid */
+.settings_form_grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.label{
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.settings_inline_actions{
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Toggles */
+.settings_toggles{
+  display: grid;
+  gap: 12px;
+}
+
+.toggle_row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: #f8fafc;
+}
+
+.toggle_texts{
+  display: grid;
+  gap: 2px;
+}
+
+/* Switch */
+.switch{
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+}
+
+.switch input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider{
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #e5e7eb;
+  transition: 0.2s;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.slider:before{
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--surface);
+  border-radius: 999px;
+  transition: 0.2s;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.switch input:checked + .slider{
+  background: rgba(59,130,246,0.35);
+  border-color: rgba(59,130,246,0.45);
+}
+
+.switch input:checked + .slider:before{
+  transform: translate(20px, -50%);
+}
+
+/* Responsive settings */
+@media (max-width: 600px){
+  .settings_form_grid{
+    grid-template-columns: 1fr;
+  }
+
+  .settings_actions{
+    justify-content: space-between;
+  }
+}
+
+/* sécurité anti scroll horizontal */
+.settings_main, .settings_scroll, .settings_section, .input{
+  min-width: 0;
+}
