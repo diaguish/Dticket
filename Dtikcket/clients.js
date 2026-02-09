@@ -13,7 +13,7 @@ function closeModal(modal) {
   modal.setAttribute("aria-hidden", "true");
 }
 
-// ===== Elements =====
+
 const clientModal = $("clientModal");
 
 const openDesktopBtn = $("openCreateClient");
@@ -35,7 +35,7 @@ const statTotal = $("statTotalClients");
 const statPending = $("statPendingRequests");
 const statActive = $("statActiveClients");
 
-// ===== Open modal =====
+
 if (openDesktopBtn) {
   openDesktopBtn.addEventListener("click", () => {
     openModal(clientModal);
@@ -56,12 +56,7 @@ if (openMobileBtn) {
   el.addEventListener("click", () => closeModal(clientModal));
 });
 
-// ESC to close
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !clientModal.classList.contains("hidden")) {
-    closeModal(clientModal);
-  }
-});
+
 
 // ===== Create client =====
 form.addEventListener("submit", (e) => {
@@ -81,8 +76,7 @@ form.addEventListener("submit", (e) => {
     <td>${escapeHtml(phone)}</td>
     <td class="muted">${formatToday()}</td>
     <td>
-     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
-
+      <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
       <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
     </td>
   `;
