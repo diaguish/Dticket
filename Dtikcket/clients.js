@@ -81,7 +81,8 @@ form.addEventListener("submit", (e) => {
     <td>${escapeHtml(phone)}</td>
     <td class="muted">${formatToday()}</td>
     <td>
-      <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
       <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
     </td>
   `;

@@ -1355,3 +1355,203 @@ body, .layout{
 .settings_main, .settings_scroll, .settings_section, .input{
   min-width: 0;
 }
+/* =========================================================
+   10) PROJECT DETAIL (project_detail.html)
+   ========================================================= */
+
+.project_detail_main{
+  height: calc(100vh - (var(--gap-4) * 2));
+  overflow: hidden;                 /* on bloque le scroll global */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+  padding-top: 6px;
+  min-width: 0;
+}
+
+/* Header */
+.pd_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: var(--bg);
+  padding: 6px 0 10px;
+}
+
+.pd_titles{ min-width: 0; }
+.pd_title{
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.pd_subrow{
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pd_actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Layout grid */
+.pd_grid{
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--gap-3);
+  flex: 1;
+  min-height: 0;                   /* important pour les zones scroll */
+}
+
+.pd_left{
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+  min-width: 0;
+}
+
+/* KPI */
+.pd_kpis{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--gap-3);
+}
+
+.pd_kpi_title{
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.pd_kpi_big{
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.pd_kpi--hours .progress{ margin-top: 10px; }
+
+/* Filters (sticky sous le header) */
+.pd_filters{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--gap-2);
+
+  position: sticky;
+  top: 86px;                       /* ajuste si ton header change */
+  z-index: 7;
+  background: var(--bg);
+  padding-bottom: 10px;
+
+  min-width: 0;
+}
+.pd_search, .pd_filter{ min-width: 0; }
+
+/* ✅ Scroll UNIQUEMENT sur la liste tickets */
+.pd_tickets_scroll{
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+
+.pd_table_card{
+  padding: 0;                      /* table déjà “pleine largeur” */
+  overflow: hidden;
+}
+
+.pd_table th, .pd_table td{ vertical-align: middle; }
+
+.pd_row_actions{
+  display: flex;
+  gap: 8px;
+}
+
+/* Right panel */
+.pd_right{
+  min-width: 0;
+}
+
+.pd_info_card{
+  height: 100%;
+  overflow: auto;
+}
+
+.pd_right_title{
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.pd_info_line{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-2);
+  padding: 8px 0;
+}
+
+.pd_sep{
+  border: 0;
+  border-top: 1px solid #edf1f5;
+  margin: 12px 0;
+}
+
+.pd_block_title{
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.pd_note{
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.pd_activity{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #edf1f5;
+}
+
+/* ✅ Stop scroll horizontal global (au cas où) */
+body, .layout{
+  overflow-x: hidden;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .pd_grid{
+    grid-template-columns: 1fr;  /* panneau info passe en dessous */
+  }
+
+  .pd_kpis{
+    grid-template-columns: 1fr 1fr; /* 2 colonnes */
+  }
+
+  .pd_filters{
+    grid-template-columns: 1fr; /* filtres en colonne */
+    top: 90px;
+  }
+
+  .pd_actions{
+    justify-content: flex-start;
+  }
+}

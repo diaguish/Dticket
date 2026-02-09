@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dticket — Détail projet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard project-detail-page">
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="left_bar" aria-label="Menu latéral">
+      <div class="logo">
+        <h2>Dticket</h2>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li class="is-active"><a href="projects.html">Projets</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="settings.html">Paramètres</a></li>
+        </ul>
+      </nav>
+
+      <div class="settings">
+        <ul>
+          <li><a href="settings.html">Paramètres</a></li>
+          <li class="danger"><a href="login.html">Deconnexion</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="project_detail_main">
+
+      <!-- HEADER -->
+      <header class="pd_header">
+        <div class="pd_titles">
+          <h1 class="pd_title">Refonte Site Web</h1>
+          <div class="pd_subrow">
+            <span class="muted">Client A</span>
+            <span class="chip chip--success">Actif</span>
+          </div>
+        </div>
+
+        <div class="pd_actions">
+          <button class="btn btn--primary" type="button" id="openCreateTicket">+ Nouveau ticket</button>
+          <button class="btn btn--ghost" type="button">Modifier le projet</button>
+          <button class="icon_btn" type="button" aria-label="Options">⋯</button>
+        </div>
+      </header>
+
+      <!-- CONTENT GRID -->
+      <section class="pd_grid" aria-label="Détails projet">
+
+        <!-- LEFT -->
+        <section class="pd_left">
+
+          <!-- KPI -->
+          <section class="pd_kpis" aria-label="Indicateurs">
+            <article class="card pd_kpi pd_kpi--hours">
+              <h3 class="pd_kpi_title">Heures restantes</h3>
+              <p class="pd_kpi_big">16h</p>
+              <p class="muted">Heures incluses : <strong>50h</strong></p>
+              <div class="progress" aria-label="Progression heures">
+                <div class="bar" style="width: 68%;"></div>
+              </div>
+            </article>
+
+            <article class="card pd_kpi">
+              <h3 class="pd_kpi_title">Ouverts</h3>
+              <p class="pd_kpi_big">4</p>
+              <span class="chip chip--success">Ouvert</span>
+            </article>
+
+            <article class="card pd_kpi">
+              <h3 class="pd_kpi_title">En cours</h3>
+              <p class="pd_kpi_big">2</p>
+              <span class="chip chip--soft-primary">En cours</span>
+            </article>
+
+            <article class="card pd_kpi">
+              <h3 class="pd_kpi_title">À valider</h3>
+              <p class="pd_kpi_big">1</p>
+              <span class="chip chip--warning">À valider</span>
+            </article>
+          </section>
+
+          <!-- FILTERS -->
+          <section class="pd_filters" aria-label="Filtres tickets">
+            <div class="pd_search">
+              <input class="input" type="text" placeholder="Rechercher un ticket..." aria-label="Rechercher un ticket" />
+            </div>
+
+            <div class="pd_filter">
+              <select class="select" aria-label="Filtrer par statut">
+                <option value="">Statut</option>
+                <option>Ouvert</option>
+                <option>En cours</option>
+                <option>À valider</option>
+                <option>Terminé</option>
+              </select>
+            </div>
+
+            <div class="pd_filter">
+              <select class="select" aria-label="Filtrer par priorité">
+                <option value="">Priorité</option>
+                <option>Basse</option>
+                <option>Moyenne</option>
+                <option>Haute</option>
+              </select>
+            </div>
+
+            <div class="pd_filter">
+              <select class="select" aria-label="Filtrer par type">
+                <option value="">Type</option>
+                <option>Inclus</option>
+                <option>Facturable</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- ✅ SCROLL ZONE (tickets seulement) -->
+          <section class="pd_tickets_scroll" aria-label="Liste tickets (scroll)">
+            <div class="card pd_table_card">
+              <table class="table pd_table">
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>Statut</th>
+                    <th>Priorité</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="projectTicketsBody">
+                  <tr>
+                    <td><strong>Refondre la page d'accueil</strong></td>
+                    <td><span class="chip chip--soft-primary">En cours</span></td>
+                    <td><span class="chip chip--pri-med">Moyenne</span></td>
+                    <td><span class="chip chip--info">Inclus</span></td>
+                    <td>12 Avril</td>
+                    <td class="pd_row_actions">
+                     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
+                      <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Optimiser les images</td>
+                    <td><span class="chip chip--warning">À valider</span></td>
+                    <td><span class="chip chip--pri-high">Haute</span></td>
+                    <td><span class="chip chip--info">Inclus</span></td>
+                    <td>10 Avril</td>
+                    <td class="pd_row_actions">
+                     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
+                      <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Ajouter une nouvelle fonction de recherche</td>
+                    <td><span class="chip chip--success">Ouvert</span></td>
+                    <td><span class="chip chip--pri-med">Moyenne</span></td>
+                    <td><span class="chip chip--warning">Facturable</span></td>
+                    <td>8 Avril</td>
+                    <td class="pd_row_actions">
+                     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
+                      <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Corriger les erreurs 404</td>
+                    <td><span class="chip chip--success">Ouvert</span></td>
+                    <td><span class="chip chip--pri-low">Basse</span></td>
+                    <td><span class="chip chip--warning">Facturable</span></td>
+                    <td>7 Avril</td>
+                    <td class="pd_row_actions">
+                     <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
+                      <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </section>
+
+        <!-- RIGHT PANEL -->
+        <aside class="pd_right" aria-label="Informations projet">
+          <div class="card pd_info_card">
+            <h2 class="pd_right_title">Informations</h2>
+
+            <div class="pd_info_line">
+              <span aria-hidden="true">✉️</span>
+              <span>clienta@mail.com</span>
+            </div>
+
+            <div class="pd_info_line">
+              <span aria-hidden="true">📞</span>
+              <span>06 12 34 56 78</span>
+            </div>
+
+            <hr class="pd_sep" />
+
+            <h3 class="pd_block_title">Membres</h3>
+            <div class="avatars pd_members">
+              <span class="avatar">D</span>
+              <span class="avatar">M</span>
+              <span class="avatar">J</span>
+              <span class="avatar more">+2</span>
+            </div>
+
+            <hr class="pd_sep" />
+
+            <h3 class="pd_block_title">Notes</h3>
+            <div class="pd_note card">
+              <p class="muted">Quelques notes spécifiques pour ce projet…</p>
+            </div>
+
+            <div class="pd_activity">
+              <p class="muted">Damien a ajouté un nouveau ticket : <strong>"Optimiser les images"</strong>.</p>
+            </div>
+          </div>
+        </aside>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- (Optionnel) Tu peux réutiliser ton modal ticket plus tard ici -->
+
+  <!-- JS (optionnel) -->
+  <!-- <script src="project_detail.js"></script> -->
+</body>
+</html>

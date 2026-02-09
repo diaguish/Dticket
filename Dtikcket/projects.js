@@ -95,7 +95,8 @@ form.addEventListener("submit", (e) => {
         <span class="avatar">N</span>
       </div>
       <div class="icons">
-        <button class="icon_btn" type="button" aria-label="Voir">🔍</button>
+       <a class="icon_btn" href="project_detail.html" aria-label="Voir">🔍</a>
+
         <button class="icon_btn" type="button" aria-label="Modifier">✏️</button>
       </div>
     </footer>
